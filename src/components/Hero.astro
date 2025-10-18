@@ -1,0 +1,69 @@
+<section class="hero">
+    <div class="container">
+        <div class="hero-wrapper">
+            <div class="top-wrapper">
+                <h1>
+                    Odkryj<span> piękno i energię, </span> <br/>
+                    drzemiące w kwiatach
+                </h1>
+                <p>Kwiaty przeobrażają w pachnący ogród każde miejsce swoja obecnością, kolorem,<br/> zapachem i formą wyczarowaną ręką artysty. </p>
+            </div>
+            <div class="bottom-wrapper">
+                <h4>Skomponuj swoją dekorację kwiatową już dziś</h4>
+                <a href="#" class="btn btn-primary">Skontaktuj się ze mną</a>
+                <a href="#" class="btn btn-white-outline">sprawdź gotowe kompozycje</a>
+    
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<style lang="scss">
+.hero {
+    background-image: url("../../public/hero.jpg");
+    color:white;
+    height: calc(100vh - 44px);
+    padding-top:44px;
+    .container {
+        height: 100%;
+    }
+    h1 {
+        margin-bottom: 40px;
+    }
+}
+.top-wrapper {
+padding-top:100px;
+
+}
+.bottom-wrapper {
+    padding-bottom: 80px;
+    .btn-primary {
+        margin-right: 20px;
+    }
+
+    h4 {
+        position: relative;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        &::after {
+            position: absolute;
+            bottom:0px;
+            left: 0;
+            content: "";
+            width: 150px;
+            height: 2px;
+            background-color: var(--primary);
+            opacity: .2;
+        }
+}
+}
+.hero-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+</style>

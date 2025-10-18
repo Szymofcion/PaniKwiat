@@ -1,0 +1,108 @@
+<section class="opinion-section">
+    <div class="container">
+        <h2>Co mówią o mnie moi Klienci?</h2>
+
+        <div class="opinions-wrapper">
+            <div class="opinion div1"> 
+                <h6>Aleksandra p.</h6>
+                <p>Lorem ipsum dolor sit amet consectetur. Tempor mollis sed tortor gravida purus. Quisque sapien consectetur nisi odio. Sit in fusce a mollis. Amet morbi in consequat sagittis posuere volutpat ut varius. Sagittis pulvinar et nunc mattis. Malesuada leo sem viverra eu a. Etiam nec ultricies quis vehicula enim eu. Parturient cursus libero nec nibh nibh imperdiet maecenas massa. Varius urna nullam est purus. Malesuada leo sem viverra eu a. Etiam nec ultricies quis vehicula enim eu. Parturient cursus libero nec nibh nibh imperdiet maecenas massa. Varius urna nullam est purus.Malesuada leo sem viverra eu a. Etiam nec ultricies quis vehicula enim eu.</p>
+            </div>
+            <div class="opinion div2"> 
+                <h6>Aleksandra p.</h6>
+                <p>Lorem ipsum dolor sit amet consectetur. Tempor mollis sed tortor gravida purus. Quisque sapien consectetur nisi odio. Sit in fusce a mollis. Amet morbi in consequat sagittis posuere volutpat ut varius. Sagittis pulvinar et nunc mattis. Malesuada leo sem viverra eu a. Etiam nec ultricies quis vehicula enim eu. Parturient cursus libero nec nibh nibh imperdiet maecenas massa. Varius urna nullam est purus.</p>
+            </div>
+            <div class="opinion div3"> 
+                <h6>Aleksandra p.</h6>
+                <p>Lorem ipsum dolor sit amet consectetur. Tempor mollis sed tortor gravida purus. Quisque sapien consectetur nisi odio. Sit in fusce a mollis.</p>
+            </div>
+            <div class="opinion div4"> 
+                <h6>Aleksandra p.</h6>
+                <p>Lorem ipsum dolor sit amet consectetur. Tempor mollis sed tortor gravida purus. Quisque sapien consectetur nisi odio. Sit in fusce a mollis. Amet morbi in consequat sagittis posuere volutpat ut varius. Sagittis pulvinar et nunc mattis. Malesuada leo sem viverra eu a. Etiam nec ultricies quis vehicula enim eu. Parturient cursus libero nec nibh nibh imperdiet maecenas massa. Varius urna nullam est purus.</p>
+            </div>
+            <div class="opinion div5"> 
+                <h6>Aleksandra p.</h6>
+                <p>Lorem ipsum dolor sit amet consectetur. Tempor mollis sed tortor gravida purus. Quisque sapien consectetur nisi odio. Sit in fusce a mollis. Amet morbi in consequat sagittis posuere volutpat ut varius. Sagittis pulvinar et nunc mattis. Malesuada leo sem viverra eu a. Etiam nec ultricies quis vehicula enim eu. Parturient cursus libero nec nibh nibh imperdiet maecenas massa. Varius urna nullam est purus.</p>
+            </div>
+        </div>
+
+        <div class="btn-wrapper">
+            <a href="#" class="btn btn-primary">Skontaktuj się ze mną</a>
+            <a href="#" class="btn btn-black-outline">sprawdź gotowe kompozycje</a>
+        </div>
+    </div>
+
+</section>
+
+<style lang="scss">
+
+.opinion-section {
+    background-color: #F6F6F6;
+}
+
+.opinions-wrapper {
+display: grid;
+grid-template-columns: 1fr;
+grid-column-gap: 30px;
+grid-row-gap: 30px;
+
+
+@media screen and (min-width:1200px) {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(2, .5fr);
+
+    .div1 { grid-area: 1 / 1 / 3 / 4; }
+    .div2 { grid-area: 1 / 4 / 2 / 10; }
+    .div3 { grid-area: 1 / 10 / 2 / 13; }
+    .div4 { grid-area: 2 / 4 / 3 / 8; }
+    .div5 { grid-area: 2 / 8 / 3 / 13; }
+}
+
+}
+
+.opinion {
+    background-color: white;
+    padding:20px;
+
+    @media screen and (min-width:1200px) {
+        padding:40px;
+    }
+    h6 {
+        font-size: 16px;
+        letter-spacing: 0.04em;
+        font-weight: bold;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #E7E7E7;
+        position: relative;
+        &::after {
+            content:"";
+            position: absolute;
+            top:0;
+            right: 0;
+            display: block;
+            background: linear-gradient(131deg, rgba(152, 177, 109, 0.20) -0.76%, rgba(109, 142, 77, 0.20) 104.31%);
+            transform: rotate(45deg);
+            width:21px;
+            height: 21px;
+        }
+    }
+    p {
+        font-size: 14px;
+        font-weight: 200;
+        line-height: 25px;
+    }
+}
+
+.btn-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:15px;
+    margin-top:30px;
+    
+    @media screen and (min-width:1200px) {
+        margin-top:60px;
+    }
+}
+
+</style>
