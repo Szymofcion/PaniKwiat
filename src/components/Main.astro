@@ -979,7 +979,7 @@ import "swiper/css/navigation";
                             </button>
                             <dialog id="wielkanoc" data-astro-cid-qmzm2soj="">
                                 <article data-astro-cid-ivdev4kk="">
-                                    <div class="swiper swiper-horizontal" data-astro-cid-ivdev4kk="">
+                                    <div class="swiper" data-astro-cid-ivdev4kk="">
                                         <div class="swiper-wrapper" data-astro-cid-ivdev4kk="">
                                             <div data-lg-size="200-200" class="swiper-slide" data-astro-cid-ivdev4kk="">
                                                 <img
@@ -1191,49 +1191,27 @@ import "swiper/css/navigation";
     </div>
 </div>
 
-<script is:inline type="module">
-    import Swiper, { Navigation } from "swiper";
+<script type="module">
+    import Swiper from "https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.mjs";
+    console.log(Swiper);
 
-    console.log("Swiper loaded", Swiper);
-    function initSwiperIn(dialog) {
-        console.log("Swiper loaded", Swiper);
-
-        const root = dialog.querySelector(".swiper");
-        if (!root) return;
-        if (root._swiper) {
-            root._swiper.update();
-            return;
-        }
-
-        root._swiper = new Swiper(root, {
-            modules: [Navigation],
+    addEventListener("DOMContentLoaded", () => {
+        const swiper = new Swiper(".swiper", {
+            direction: "horizontal",
             loop: true,
-            slidesPerView: 1,
-            navigation: {
-                nextEl: dialog.querySelector(".swiper-button-next"),
-                prevEl: dialog.querySelector(".swiper-button-prev"),
+
+            pagination: {
+                el: ".swiper-pagination",
             },
-        });
-    }
 
-    document.querySelectorAll(".btn-modal").forEach((btn) => {
-        btn.addEventListener("click", () => {
-            const id = btn.getAttribute("data-modal");
-            const dialog = document.getElementById(id);
-            if (!dialog) return;
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
 
-            if (typeof dialog.showModal === "function") dialog.showModal();
-            else dialog.setAttribute("open", "");
-
-            requestAnimationFrame(() => initSwiperIn(dialog));
-        });
-    });
-
-    document.querySelectorAll("dialog").forEach((d) => {
-        d.addEventListener("click", (e) => {
-            const r = d.getBoundingClientRect();
-            const out = e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
-            if (out) d.close?.();
+            scrollbar: {
+                el: ".swiper-scrollbar",
+            },
         });
     });
 </script>
