@@ -1,3 +1,6 @@
+@import "swiper/css";
+@import "swiper/css/navigation";
+
 .selection\:text-white *::-moz-selection {
     color: inherit;
 }
@@ -1799,9 +1802,7 @@ p {
 }
 
 .btn-white-outline:hover {
-    box-shadow:
-        0 0 0 1px #fff,
-        0 0 0 1px #fff;
+    box-shadow: 0 0 0 1px #fff, 0 0 0 1px #fff;
 }
 
 .btn-black-outline {
@@ -1811,9 +1812,7 @@ p {
 }
 
 .btn-black-outline:hover {
-    box-shadow:
-        0 0 0 1px #151515,
-        0 0 0 1px #151515;
+    box-shadow: 0 0 0 1px #151515, 0 0 0 1px #151515;
 }
 
 main {
