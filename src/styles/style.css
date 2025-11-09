@@ -1890,3 +1890,9 @@ main {
 main {
     background-color: #f6f6f6;
 }
+
+@media (min-width: 1280px) {
+    .offer.boze-narodzenie .boze-nardzenie-img {
+        max-height: 380px;
+    }
+}
