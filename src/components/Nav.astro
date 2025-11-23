@@ -1,7 +1,10 @@
 ---
+const pathname = Astro.url.pathname;
+
 const links = [
   { href: "/#skomponuj", label: "Skomponuj dekorację", sub: "Daj się ponieść fantazji" },
-  { href: "/#dekoracje", label: "Gotowe od ręki", sub: "gotowe produkty", active: true },
+  { href: pathname === "/cennik" ? "#dekoracje" : "/#dekoracje", label: "Gotowe od ręki", sub: "gotowe produkty", active: pathname === "/" },
+  { href: "/cennik", label: "Cennik", sub: "sprawdź ceny", active: pathname === "/cennik" },
   { href: "/#kimjestem", label: "Kim jestem?", sub: "poznajmy się" },
   { href: "/#opinie", label: "Poznaj opinie", sub: "Mówią o mnie..." },
   { href: "/#footer", label: "Kontakt", sub: "porozmawiajmy" },
