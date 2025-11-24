@@ -241,7 +241,7 @@ const items = copy.items.map((item, index) => ({
     }
     @media (min-width: 768px) {
         .pricing-image {
-            max-width: 400px;
+            max-width: 350px;
         }
         .pricing-image img {
             max-height: 100%;
@@ -250,6 +250,11 @@ const items = copy.items.map((item, index) => ({
             border-top-left-radius: 8px;
             border-bottom-left-radius: 8px;
             border-top-right-radius: 0px;
+        }
+    }
+    @media (min-width: 1280px) {
+        .pricing-image {
+            max-width: 400px;
         }
     }
 
