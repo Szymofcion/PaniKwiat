@@ -158,14 +158,14 @@ const languages = [
 
             <nav
                 id="primary-nav"
-                class="flex-col xl:items-center flex-grow hidden xl:pb-0 xl:flex xl:justify-end xl:flex-row gap-4"
+                class="flex-col xl:items-center flex-grow hidden xl:pb-0 xl:flex xl:justify-end xl:flex-row xl:flex-nowrap gap-2 xl:gap-x-2"
                 data-astro-cid-3ef6ksr2
             >
                 {
                     links.map((l) => (
                         <a
                             data-astro-cid-3ef6ksr2
-                            class={`mx-2 lg:mx-6 py-2 md:mx-3 text-sm menu-link ${l.active ? "active" : ""}`}
+                            class={`px-2 py-2 text-sm menu-link ${l.active ? "active" : ""}`}
                             href={l.href}
                         >
                             {l.label}
@@ -173,7 +173,7 @@ const languages = [
                         </a>
                     ))
                 }
-                <div class="lang-switch">
+                <div class="lang-switch mt-2 xl:mt-0 xl:ml-2 flex-shrink-0">
                     {
                         languages.map((l) => (
                             <a class={`lang-pill ${l.code === lang ? "active" : ""}`} href={l.href}>
@@ -272,16 +272,21 @@ const languages = [
     a[data-astro-cid-3ef6ksr2] {
         display: flex;
         flex-direction: column;
+        text-align: left;
+        align-items: start;
         color: #151515;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 700;
         line-height: normal;
         text-transform: uppercase;
     }
-
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1280px) {
         a[data-astro-cid-3ef6ksr2] {
             align-items: center;
+
+            text-align: center;
+            white-space: nowrap;
+            font-size: 12px;
         }
     }
 
@@ -305,7 +310,7 @@ const languages = [
         position: fixed;
         height: 100vh;
         width: 100vw;
-        top: 410px;
+        top: 438px;
         left: 0%;
         opacity: 0.5;
         z-index: -1;
@@ -320,14 +325,18 @@ const languages = [
     .lang-switch {
         display: flex;
         gap: 8px;
-        padding: 6px;
-        border-radius: 999px;
-        background: #f2f2f2;
         align-items: center;
+        margin-top: 0;
+        padding: 8px;
     }
-
+    @media screen and (min-width: 1280px) {
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+        }
+    }
     .lang-pill {
-        padding: 6px 10px;
+        padding: 5px 9px;
         border-radius: 999px;
         font-size: 12px;
         font-weight: 700;
@@ -335,6 +344,11 @@ const languages = [
         color: #151515;
         border: 1px solid transparent;
         transition: 0.2s ease-in-out all;
+        width: 45px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .lang-pill:hover {
