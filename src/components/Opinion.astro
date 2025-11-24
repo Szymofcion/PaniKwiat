@@ -1,47 +1,20 @@
+---
+import { normalizeLang, siteCopy, type SiteLang } from "../i18n/site";
+
+const lang = normalizeLang(Astro.props.lang as SiteLang);
+const copy = siteCopy[lang].opinion;
+---
+
 <section class="opinion-section" id="opinie" data-astro-cid-jveos4p6="">
     <div class="container" data-astro-cid-jveos4p6="">
-        <h2 data-astro-cid-jveos4p6="">Co mówią o mnie moi Klienci?</h2>
+        <h2 data-astro-cid-jveos4p6="">{copy.heading}</h2>
         <div class="opinions-wrapper" data-astro-cid-jveos4p6="">
-            <div class="opinion div1" data-astro-cid-jveos4p6="">
-                <h6 data-astro-cid-jveos4p6="">Magda P.</h6>
-                <p data-astro-cid-jveos4p6="">"Znakomita jakość i niezwykła kreatywność! Pani Joanna to mistrzyni
-                    florystyki, która potrafi zachwycić każdego. Jej bukiety są idealne na każdą okoliczność, a obsługa
-                    klienta jest na najwyższym poziomie. Jeśli szukasz wyjątkowych kwiatów, to jest to miejsce, którego
-                    potrzebujesz! Pani Joanna posiada nie tylko niesamowity talent, ale także ogromną wiedzę o kwiatach.
-                    Każdy bukiet jest dopracowany w najdrobniejszych szczegółach, a jej podejście do klienta jest ciepłe
-                    i profesjonalne. Dodatkowo, sklep oferuje szeroką gamę kwiatów, od klasycznych róż po egzotyczne
-                    gatunki, co pozwala na stworzenie naprawdę unikalnych i osobistych aranżacji. Gorąco polecam!"</p>
-            </div>
-            <div class="opinion div2" data-astro-cid-jveos4p6="">
-                <h6 data-astro-cid-jveos4p6="">Katarzyna M.</h6>
-                <p data-astro-cid-jveos4p6="">"Pani Joanna tworzy magiczne kompozycje, które przekraczają wszelkie
-                    oczekiwania. Każdy bukiet jest unikatowy i wykonany z niezwykłą starannością. Jej kwiaty dodają
-                    splendoru każdej uroczystości. Absolutnie polecam! Pani Joanna z pasją opowiada o każdym kwiecie,
-                    pomagając stworzyć idealną kompozycję. Obsługa jest zawsze uprzejma i pomocna, a atmosfera sklepu
-                    sprawia, że chce się wracać. Niezależnie od okazji, czy to ślub, rocznica, czy po prostu chęć
-                    sprawienia radości bliskim, kwiaty od Pani Joanny zawsze są strzałem w dziesiątkę."</p>
-            </div>
-            <div class="opinion div3" data-astro-cid-jveos4p6="">
-                <h6 data-astro-cid-jveos4p6="">Robert L.</h6>
-                <p data-astro-cid-jveos4p6="">“Zamówienia od Pani Joanny zawsze realizowane są z niezwykłą starannością
-                    – kwiaty są zawsze świeże, pięknie ułożone i starannie zapakowane. Gorąco polecam wszystkim, którzy
-                    cenią sobie wygodę, jakość i piękno!"</p>
-            </div>
-            <div class="opinion div4" data-astro-cid-jveos4p6="">
-                <h6 data-astro-cid-jveos4p6="">Aleksandra P.</h6>
-                <p data-astro-cid-jveos4p6="">“Bukiet, który zamówiłem, przekroczył moje oczekiwania – kwiaty były
-                    świeże, pięknie ułożone i pachnące. Szybka dostawa i profesjonalne podejście do klienta sprawiają,
-                    że na pewno jeszcze nie raz skorzystam z usług tego sklepu. Polecam każdemu, kto szuka wyjątkowych
-                    kwiatów z dostawą prosto pod drzwi!"</p>
-            </div>
-            <div class="opinion div5" data-astro-cid-jveos4p6="">
-                <h6 data-astro-cid-jveos4p6="">Julia T.</h6>
-                <p data-astro-cid-jveos4p6="">"Wspaniałe doświadczenie zakupowe! Sklep online Pani Joanny oferuje nie
-                    tylko przepiękne bukiety i wiązanki, ale również znakomitą obsługę klienta. Proces zamawiania jest
-                    bardzo prosty, a możliwość personalizacji bukietów online to wielki plus. Kwiaty przybyły dokładnie
-                    na czas, pięknie zapakowane i w nienagannym stanie. To była moja pierwsza, ale na pewno nie ostatnia
-                    wizyta w tym sklepie!"</p>
-            </div>
+            {copy.items.map((item, index) => (
+                <div class={`opinion div${index + 1}`} data-astro-cid-jveos4p6="">
+                    <h6 data-astro-cid-jveos4p6="">{item.author}</h6>
+                    <p data-astro-cid-jveos4p6="">{item.text}</p>
+                </div>
+            ))}
         </div>
     </div>
 </section>

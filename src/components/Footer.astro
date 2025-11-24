@@ -1,3 +1,19 @@
+---
+import { normalizeLang, siteCopy, type SiteLang } from "../i18n/site";
+
+const lang = normalizeLang(Astro.props.lang as SiteLang);
+const copy = siteCopy[lang];
+const basePath = Astro.url.pathname.replace(/^\/(en|de)(?=\/|$)/, "") || "/";
+const prefix = lang === "pl" ? "" : `/${lang}`;
+const onPricing = basePath.startsWith("/cennik");
+const footerLinks = copy.nav.links.map((link) => {
+    const href = link.href.includes("#dekoracje") && onPricing ? "#dekoracje" : link.href;
+    const finalHref =
+        href === "/cennik" ? `${prefix}/cennik` : href.startsWith("/#") ? `${prefix}${href}` : href;
+    return { ...link, href: finalHref };
+});
+---
+
 <footer id="footer" data-astro-cid-sz7xmlte="">
     <div class="container" data-astro-cid-sz7xmlte="">
         <div class="wrapper" data-astro-cid-sz7xmlte="">
@@ -35,7 +51,7 @@
                 </div>
             </div>
             <div class="contact-wrapper" data-astro-cid-sz7xmlte="">
-                <h3 data-astro-cid-sz7xmlte="">Potrzebujesz pomocy w doborze kwiatów? zadzwoń!</h3>
+                <h3 data-astro-cid-sz7xmlte="">{copy.footer.help}</h3>
                 <div class="contact-wrapper-2-columns" data-astro-cid-sz7xmlte=""> 
                   <a href="tel:+48501744994"  class="phone" data-astro-cid-sz7xmlte=""> 
                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -75,34 +91,22 @@
                         </span> 
                   </a> 
                 </div>
-                <div class="wrapper-contact-links" data-astro-cid-sz7xmlte=""> <a class="menu-link mx-2 text-sm"
-                        href="/#skomponuj" data-astro-cid-3ef6ksr2="" data-astro-source-loc="121:25"
-                        data-astro-cid-sz7xmlte="">Skomponuj dekorację
-                        <span data-astro-cid-3ef6ksr2="" data-astro-source-loc="122:17" data-astro-cid-sz7xmlte="">Daj
-                            się ponieść fantazji</span> </a> <a class="menu-link mx-2 text-sm" href="/#dekoracje"
-                        data-astro-cid-3ef6ksr2="" data-astro-source-loc="127:27" data-astro-cid-sz7xmlte="">Gotowe od
-                        ręki
-                        <span data-astro-cid-3ef6ksr2="" data-astro-source-loc="128:17"
-                            data-astro-cid-sz7xmlte="">gotowe produkty</span> </a> <a class="menu-link mx-2 text-sm"
-                        href="/#kimjestem" data-astro-cid-3ef6ksr2="" data-astro-source-loc="133:32"
-                        data-astro-cid-sz7xmlte="">Kim jestem?
-                        <span data-astro-cid-3ef6ksr2="" data-astro-source-loc="134:17"
-                            data-astro-cid-sz7xmlte="">poznajmy się</span> </a> <a class="menu-link mx-2 text-sm"
-                        href="/#opinie" data-astro-cid-3ef6ksr2="" data-astro-source-loc="140:32"
-                        data-astro-cid-sz7xmlte="">Poznaj opinie
-                        <span data-astro-cid-3ef6ksr2="" data-astro-source-loc="141:17"
-                            data-astro-cid-sz7xmlte="">Mówią o mnie...</span> </a> <a class="menu-link mx-2 text-sm"
-                        href="/#footer" data-astro-cid-3ef6ksr2="" data-astro-source-loc="147:31"
-                        data-astro-cid-sz7xmlte="">Kontakt
-                        <span data-astro-cid-3ef6ksr2="" data-astro-source-loc="148:17"
-                            data-astro-cid-sz7xmlte="">porozmawiajmy</span> </a> </div>
+                <div class="wrapper-contact-links" data-astro-cid-sz7xmlte="">
+                    {
+                        footerLinks.map((l) => (
+                            <a class="menu-link mx-2 text-sm" href={l.href} data-astro-cid-3ef6ksr2="" data-astro-cid-sz7xmlte="">
+                                {l.label}
+                                <span data-astro-cid-3ef6ksr2="" data-astro-cid-sz7xmlte="">{l.sub}</span>
+                            </a>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     </div>
 </footer>
 <section class="copyright" data-astro-cid-sz7xmlte="">
     <div class="container" data-astro-cid-sz7xmlte="">
-        <p data-astro-cid-sz7xmlte="">Copyright © Pani Kwiat - Realizacja strony internetowej: Manufaktura
-            Programowania &amp; Studio Projektowe Bonsai Design</p>
+        <p data-astro-cid-sz7xmlte="">{copy.footer.copyright}</p>
     </div>
 </section>

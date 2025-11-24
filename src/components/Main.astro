@@ -1,24 +1,27 @@
 ---
 import "swiper/css";
 import "swiper/css/navigation";
+import { normalizeLang, siteCopy, type SiteLang } from "../i18n/site";
+
+const lang = normalizeLang(Astro.props.lang as SiteLang);
+const copy = siteCopy[lang];
+const mainCopy = copy.main;
+const [section1, section2, section3, section4] = mainCopy.sections;
+const { contactForm } = copy;
 ---
 
 <div class="container">
-    <h2>Skomponuj idealną dekorację na dowolną okazję</h2>
+    <h2>{mainCopy.title}</h2>
 </div>
 <div class="container" data-astro-cid-ivdev4kk="">
     <div class="offer" data-astro-cid-ivdev4kk="">
         <div class="wrapper-container" data-astro-cid-ivdev4kk="">
             <div class="wrapper" data-astro-cid-ivdev4kk="">
-                <h3 data-astro-cid-ivdev4kk=""><span data-astro-cid-ivdev4kk="">I</span>Dekoracje ślubne</h3>
-                <p data-astro-cid-ivdev4kk="">
-                    Wielkim wydarzeniem w naszym życiu jest uroczystość zaślubin. Niewątpliwie kwiaty są jej nieodzownym
-                    atrybutem. Zachęcam do stworzenia niepowtarzalnej oprawy kwiatowej przygotowanej specjalnie dla
-                    Państwa. Nie tylko pod względem doboru kolorów, ale również dostosowanej do charakteru, temperamentu
-                    i urody Państwa Młodych. Dla Niej skomponowana wiązanka ślubna, dla Niego butonierka. Będzie ona
-                    spójna z wystrojem sali, kościoła, samochodu i tortu. Dla druhen i dziewczynek wianki, małe wiązanki
-                    i przypinki do włosów.
-                </p>
+                <h3 data-astro-cid-ivdev4kk="">
+                    <span data-astro-cid-ivdev4kk="">{section1.numeral}</span>
+                    {section1.heading}
+                </h3>
+                <p data-astro-cid-ivdev4kk="">{section1.body}</p>
             </div>
             <div class="wrapper-image" data-astro-cid-ivdev4kk="">
                 <img
@@ -48,7 +51,7 @@ import "swiper/css/navigation";
                     />
                     <div class="box box-bukietyslubne" data-astro-cid-ivdev4kk="">
                         <button class="btn-modal" onclick="window.bukietyslubne.showModal()" data-astro-cid-qmzm2soj="">
-                            Zobacz zdjęcia
+                            {mainCopy.viewPhotos}
                         </button>
                         <dialog id="bukietyslubne" data-astro-cid-qmzm2soj="">
                             <article data-astro-cid-ivdev4kk="">
@@ -306,7 +309,7 @@ import "swiper/css/navigation";
                         </dialog>
                     </div>
                 </div>
-                <h3 data-astro-cid-ivdev4kk="">Bukiety ślubne</h3>
+                <h3 data-astro-cid-ivdev4kk="">{section1.cards[0]}</h3>
                 <!-- koniec swiper -->
             </div>
             <div class="card" data-astro-cid-ivdev4kk="">
@@ -323,7 +326,7 @@ import "swiper/css/navigation";
                     />
                     <div class="box box-wystroj" data-astro-cid-ivdev4kk="">
                         <button class="btn-modal" onclick="window.wystroj.showModal()" data-astro-cid-qmzm2soj="">
-                            Zobacz zdjęcia
+                            {mainCopy.viewPhotos}
                         </button>
                         <dialog id="wystroj" data-astro-cid-qmzm2soj="">
                             <article data-astro-cid-ivdev4kk="">
@@ -544,7 +547,7 @@ import "swiper/css/navigation";
                         </dialog>
                     </div>
                 </div>
-                <h3 data-astro-cid-ivdev4kk="">Wystrój sal i kościołów</h3>
+                <h3 data-astro-cid-ivdev4kk="">{section1.cards[1]}</h3>
             </div>
             <div class="card" data-astro-cid-ivdev4kk="">
                 <div class="card-img-wrapper" data-astro-cid-ivdev4kk="">
@@ -560,7 +563,7 @@ import "swiper/css/navigation";
                     />
                     <div class="box box-wianki" data-astro-cid-ivdev4kk="">
                         <button class="btn-modal" onclick="window.wianki.showModal()" data-astro-cid-qmzm2soj="">
-                            Zobacz zdjęcia
+                            {mainCopy.viewPhotos}
                         </button>
                         <dialog id="wianki" data-astro-cid-qmzm2soj="">
                             <article data-astro-cid-ivdev4kk="">
@@ -599,7 +602,7 @@ import "swiper/css/navigation";
                         </dialog>
                     </div>
                 </div>
-                <h3 data-astro-cid-ivdev4kk="">Wianki i tiary z żywych kwiatów</h3>
+                <h3 data-astro-cid-ivdev4kk="">{section1.cards[2]}</h3>
             </div>
             <div class="card" data-astro-cid-ivdev4kk="">
                 <div class="card-img-wrapper" data-astro-cid-ivdev4kk="">
@@ -619,7 +622,7 @@ import "swiper/css/navigation";
                             onclick="window.wiankidlazwierzat.showModal()"
                             data-astro-cid-qmzm2soj=""
                         >
-                            Zobacz zdjęcia
+                            {mainCopy.viewPhotos}
                         </button>
                         <dialog id="wiankidlazwierzat" data-astro-cid-qmzm2soj="">
                             <article data-astro-cid-ivdev4kk="">
@@ -658,20 +661,19 @@ import "swiper/css/navigation";
                         </dialog>
                     </div>
                 </div>
-                <h3 data-astro-cid-ivdev4kk="">Ozdobne wianki dla ukochanych zwierząt</h3>
+                <h3 data-astro-cid-ivdev4kk="">{section1.cards[3]}</h3>
             </div>
         </div>
     </div>
     <div class="offer" data-astro-cid-ivdev4kk="">
         <div class="wrapper-container" data-astro-cid-ivdev4kk="">
             <div class="wrapper" data-astro-cid-ivdev4kk="">
-                <h3 data-astro-cid-ivdev4kk=""><span data-astro-cid-ivdev4kk="">II</span>Ringi, wieńce, serca</h3>
-                <p data-astro-cid-ivdev4kk="">
-                    Wianki na każda okazję, urodziny, ozdobny wianek na drzwi, lub jako dekoracje stołu ze świecą.
-                    Zrobimy je dla Ciebie z żywych, suchych i sztucznych kwiatów. Będzie on przepiękną ozdobą w
-                    witrynach sklepowych. Możemy położyć go na trumnie w ostatnim pożegnaniu.
-                </p>
-                <p data-astro-cid-ivdev4kk="">Cena od 250 zł. w zależności od wielkości i użytych kwiatów.</p>
+                <h3 data-astro-cid-ivdev4kk="">
+                    <span data-astro-cid-ivdev4kk="">{section2.numeral}</span>
+                    {section2.heading}
+                </h3>
+                <p data-astro-cid-ivdev4kk="">{section2.body}</p>
+                <p data-astro-cid-ivdev4kk="">{section2.priceNote}</p>
             </div>
             <div class="wrapper-image" data-astro-cid-ivdev4kk="">
                 <div class="card" data-astro-cid-ivdev4kk="">
@@ -688,7 +690,7 @@ import "swiper/css/navigation";
                         />
                         <div class="box box-ringi" data-astro-cid-ivdev4kk="">
                             <button class="btn-modal" onclick="window.ringi.showModal()" data-astro-cid-qmzm2soj="">
-                                Zobacz zdjęcia
+                                {mainCopy.viewPhotos}
                             </button>
                             <dialog id="ringi" data-astro-cid-qmzm2soj="">
                                 <article data-astro-cid-ivdev4kk="">
@@ -776,16 +778,12 @@ import "swiper/css/navigation";
     <div class="offer" data-astro-cid-ivdev4kk="">
         <div class="wrapper-container" data-astro-cid-ivdev4kk="">
             <div class="wrapper" data-astro-cid-ivdev4kk="">
-                <h3 data-astro-cid-ivdev4kk=""><span data-astro-cid-ivdev4kk="">III</span>Wiązanki pogrzebowe</h3>
-                <p data-astro-cid-ivdev4kk="">
-                    Każdy z nas na swojej życiowej drodze staje przed trumną osoby, która odeszła z tego świata. W
-                    hołdzie i pamięci naszym Ukochanym mamy ofertę, w której można stworzyć lub wybrać z bogatej
-                    kolekcji kompozycje, które będą odzwierciedleniem lub uhonorowaniem życia osoby zmarłej.
-                </p>
-                <p data-astro-cid-ivdev4kk="">
-                    Zrobione z żywych lub sztucznych kwiatów, w zależności od życzeń klienta i pory roku. Cena w
-                    zależności od rodzaju i wielkości kompozycji aranżacje na trumnę od 500 zł.
-                </p>
+                <h3 data-astro-cid-ivdev4kk="">
+                    <span data-astro-cid-ivdev4kk="">{section3.numeral}</span>
+                    {section3.heading}
+                </h3>
+                <p data-astro-cid-ivdev4kk="">{section3.body}</p>
+                <p data-astro-cid-ivdev4kk="">{section3.priceNote}</p>
             </div>
             <div class="wrapper-image" data-astro-cid-ivdev4kk="">
                 <img
@@ -814,7 +812,7 @@ import "swiper/css/navigation";
                     />
                     <div class="box box-wience1" data-astro-cid-ivdev4kk="">
                         <button class="btn-modal" onclick="window.wience1.showModal()" data-astro-cid-qmzm2soj="">
-                            Zobacz zdjęcia
+                            {mainCopy.viewPhotos}
                         </button>
                         <dialog id="wience1" data-astro-cid-qmzm2soj="">
                             <article data-astro-cid-ivdev4kk="">
@@ -938,7 +936,7 @@ import "swiper/css/navigation";
                         </dialog>
                     </div>
                 </div>
-                <h3 data-astro-cid-ivdev4kk="">Wiązanki pogrzebowe</h3>
+                <h3 data-astro-cid-ivdev4kk="">{section3.cards[0]}</h3>
             </div>
             <div class="card" data-astro-cid-ivdev4kk="">
                 <div class="card-img-wrapper" data-astro-cid-ivdev4kk="">
@@ -958,7 +956,7 @@ import "swiper/css/navigation";
                             onclick="window.sercalubkrzyze.showModal()"
                             data-astro-cid-qmzm2soj=""
                         >
-                            Zobacz zdjęcia
+                            {mainCopy.viewPhotos}
                         </button>
                         <dialog id="sercalubkrzyze" data-astro-cid-qmzm2soj="">
                             <article data-astro-cid-ivdev4kk="">
@@ -990,7 +988,7 @@ import "swiper/css/navigation";
                         </dialog>
                     </div>
                 </div>
-                <h3 data-astro-cid-ivdev4kk="">Serca kwiatowe</h3>
+                <h3 data-astro-cid-ivdev4kk="">{section3.cards[1]}</h3>
             </div>
             <div class="card" data-astro-cid-ivdev4kk="">
                 <div class="card-img-wrapper" data-astro-cid-ivdev4kk="">
@@ -1010,7 +1008,7 @@ import "swiper/css/navigation";
                             onclick="window.aranzacjenatrumne.showModal()"
                             data-astro-cid-qmzm2soj=""
                         >
-                            Zobacz zdjęcia
+                            {mainCopy.viewPhotos}
                         </button>
                         <dialog id="aranzacjenatrumne" data-astro-cid-qmzm2soj="">
                             <article data-astro-cid-ivdev4kk="">
@@ -1042,30 +1040,22 @@ import "swiper/css/navigation";
                         </dialog>
                     </div>
                 </div>
-                <h3 data-astro-cid-ivdev4kk="">Aranżacje na trumnę</h3>
+                <h3 data-astro-cid-ivdev4kk="">{section3.cards[2]}</h3>
             </div>
         </div>
     </div>
     <div class="offer" data-astro-cid-ivdev4kk="">
         <div class="wrapper-container" data-astro-cid-ivdev4kk="">
             <div class="wrapper" data-astro-cid-ivdev4kk="">
-                <h3 data-astro-cid-ivdev4kk=""><span data-astro-cid-ivdev4kk="">IV</span>Pozostałe dekoracje</h3>
-                <p data-astro-cid-ivdev4kk="">
-                    Zapraszamy do zapoznania się z naszą ofertą, która obejmuje resztę produktów. W niej pudełka
-                    kwiatowe na każda okazję, w każdej wielkości i kolorystyce, na ceremonie chrztu, w rocznice urodzin,
-                    na imieniny, czy z gratulacjami. Mamy również bukiety na każdą okazję z żywych i suchych kwiatów.
-                    Proponujemy aranżacje w wazach i innych ozdobnych pojemnikach. Mogą to być małe wiązanki lub tez
-                    ogromne bukiety sceniczne, kościelne, na eventy, promocje w salonach samochodowych i w salach
-                    konferencyjnych. Mamy również kosze upominkowe.
-                </p>
+                <h3 data-astro-cid-ivdev4kk="">
+                    <span data-astro-cid-ivdev4kk="">{section4.numeral}</span>
+                    {section4.heading}
+                </h3>
+                <p data-astro-cid-ivdev4kk="">{section4.body}</p>
                 <ul data-astro-cid-ivdev4kk="">
-                    <li data-astro-cid-ivdev4kk="">Bukiety ślubne</li>
-                    <li data-astro-cid-ivdev4kk="">Pudełka kwiatowe, walizki itp.</li>
-                    <li data-astro-cid-ivdev4kk="">Wazy, wazoniki i inne pojemniki</li>
-                    <li data-astro-cid-ivdev4kk="">Dekoracje sal, salonów samochodowych</li>
-                    <li data-astro-cid-ivdev4kk="">Dekoracje promocyjne w salonach samochodowych</li>
-                    <li data-astro-cid-ivdev4kk="">Kancelarie prawne</li>
-                    <li data-astro-cid-ivdev4kk="">Restauracje</li>
+                    {section4.list.map((item) => (
+                        <li data-astro-cid-ivdev4kk="">{item}</li>
+                    ))}
                 </ul>
             </div>
             <div class="wrapper-image" data-astro-cid-ivdev4kk="">
@@ -1082,7 +1072,7 @@ import "swiper/css/navigation";
                         />
                         <div class="box box-pozostale" data-astro-cid-ivdev4kk="">
                             <button class="btn-modal" onclick="window.pozostale.showModal()" data-astro-cid-qmzm2soj="">
-                                Zobacz zdjęcia
+                                {mainCopy.viewPhotos}
                             </button>
                             <dialog id="pozostale" data-astro-cid-qmzm2soj="">
                                 <article data-astro-cid-ivdev4kk="">
@@ -1333,15 +1323,9 @@ import "swiper/css/navigation";
         <div class="wrapper-container" data-astro-cid-ivdev4kk="">
             <div class="wrapper" data-astro-cid-ivdev4kk="">
                 <h3 data-astro-cid-ivdev4kk="">
-                    <span data-astro-cid-ivdev4kk="">V</span> Święta Bożego Narodzenia
+                    <span data-astro-cid-ivdev4kk="">V</span> {mainCopy.christmas.heading}
                 </h3>
-                <p data-astro-cid-ivdev4kk="">
-                    Zbliżają się Święta Bożego Narodzenia. Już za parę chwil będziemy wypatrywać pierwszej gwiazdki i
-                    płatków śniegu. Zasiądziemy do stołu w gronie Bliskich nam osób, radując się ich obecnością.
-                    Dopełnieniem tego niezwykłego czasu są wszelkiego rodzaju ozdoby świąteczne. Choinki, stroiki,
-                    wieńce i anioły. Zapraszam do kontaktu ze mną. Na Twoje życzenie powstanie dekoracja, która będzie
-                    podkreślała ten niezwykły świąteczny nastrój. Pomagamy również ubierać choinki.
-                </p>
+                <p data-astro-cid-ivdev4kk="">{mainCopy.christmas.body}</p>
             </div>
             <div class="wrapper-image" data-astro-cid-ivdev4kk="">
                 <div class="card" data-astro-cid-ivdev4kk="">
@@ -1358,7 +1342,7 @@ import "swiper/css/navigation";
                         />
                         <div class="box box-wielkanoc" data-astro-cid-ivdev4kk="">
                             <button class="btn-modal" onclick="window.wielkanoc.showModal()" data-astro-cid-qmzm2soj="">
-                                Zobacz zdjęcia
+                                {mainCopy.viewPhotos}
                             </button>
                             <dialog id="wielkanoc" data-astro-cid-qmzm2soj="">
                                 <article data-astro-cid-ivdev4kk="">
@@ -1543,16 +1527,13 @@ import "swiper/css/navigation";
     </div>
     <div class="btn-wrapper" data-astro-cid-ivdev4kk="">
         <button class="btn btn-white" onclick="window.kontaktowy2.showModal()" data-astro-cid-fziqq5va="">
-            Skontaktuj się ze mną
+            {copy.hero.contactCta}
         </button>
         <dialog id="kontaktowy2" data-astro-cid-fziqq5va="">
             <div data-astro-cid-ivdev4kk="">
                 <div class="wrapper-form" data-astro-cid-ivdev4kk="">
                     <div class="phone-wrapper" data-astro-cid-ivdev4kk="">
-                        <h3 data-astro-cid-ivdev4kk="">
-                            Skontaktuj się ze mną<br data-astro-cid-ivdev4kk="" />
-                            telefonicznie
-                        </h3>
+                        <h3 data-astro-cid-ivdev4kk="">{contactForm.phoneHeading}</h3>
                         <hr data-astro-cid-ivdev4kk="" />
                         <a href="tel:+48501744994" class="phone" data-astro-cid-ivdev4kk="">
                             <svg
@@ -1572,11 +1553,11 @@ import "swiper/css/navigation";
                                 >
                                 </path>
                             </svg>
-                            <span data-astro-cid-ivdev4kk="">501 744 994</span>
+                            <span data-astro-cid-ivdev4kk="">{contactForm.phoneCta}</span>
                         </a>
                     </div>
                     <div class="form-wrapper" data-astro-cid-ivdev4kk="">
-                        <h3 data-astro-cid-ivdev4kk="">Lub przez formularz kontaktowy</h3>
+                        <h3 data-astro-cid-ivdev4kk="">{contactForm.formHeading}</h3>
                         <form
                             target="_blank"
                             action="https://formsubmit.co/panikwiat@gmail.com"
@@ -1587,34 +1568,34 @@ import "swiper/css/navigation";
                             <div class="form-group" data-astro-cid-ivdev4kk="">
                                 <div class="form-row" data-astro-cid-ivdev4kk="">
                                     <div class="col" data-astro-cid-ivdev4kk="">
-                                        <label data-astro-cid-ivdev4kk="">Wprowadź imię: *</label>
+                                        <label data-astro-cid-ivdev4kk="">{contactForm.nameLabel}</label>
                                         <input
                                             type="text"
                                             name="name"
                                             class="form-control"
-                                            placeholder="Wprowadź imię..."
+                                            placeholder={contactForm.namePlaceholder}
                                             required=""
                                             data-astro-cid-ivdev4kk=""
                                         />
                                     </div>
                                     <div class="col" data-astro-cid-ivdev4kk="">
-                                        <label data-astro-cid-ivdev4kk="">Wprowadź numer telefonu: *</label>
+                                        <label data-astro-cid-ivdev4kk="">{contactForm.phoneLabel}</label>
                                         <input
                                             type="text"
                                             name="name"
                                             class="form-control"
-                                            placeholder="Wprowadź numer telefonu..."
+                                            placeholder={contactForm.phonePlaceholder}
                                             required=""
                                             data-astro-cid-ivdev4kk=""
                                         />
                                     </div>
                                     <div class="col" data-astro-cid-ivdev4kk="">
-                                        <label data-astro-cid-ivdev4kk="">Wprowadź adres e-mail: *</label>
+                                        <label data-astro-cid-ivdev4kk="">{contactForm.emailLabel}</label>
                                         <input
                                             type="email"
                                             name="email"
                                             class="form-control"
-                                            placeholder="Wprowadź adres e-mail..."
+                                            placeholder={contactForm.emailPlaceholder}
                                             required=""
                                             data-astro-cid-ivdev4kk=""
                                         />
@@ -1622,9 +1603,9 @@ import "swiper/css/navigation";
                                 </div>
                             </div>
                             <div class="form-group" data-astro-cid-ivdev4kk="">
-                                <label data-astro-cid-ivdev4kk="">Wiadomość: *</label>
+                                <label data-astro-cid-ivdev4kk="">{contactForm.messageLabel}</label>
                                 <textarea
-                                    placeholder="Napisz wiadomość..."
+                                    placeholder={contactForm.messagePlaceholder}
                                     class="form-control"
                                     name="Wiadomość: *"
                                     rows="6"
@@ -1645,13 +1626,10 @@ import "swiper/css/navigation";
                                         value="Boat"
                                         data-astro-cid-ivdev4kk=""
                                     />
-                                    <label for="rodo" data-astro-cid-ivdev4kk="">
-                                        Wyrażam zgodę na przetwarzanie moich danych osobowych w celu realizacji tego
-                                        zapytania.*
-                                    </label>
+                                    <label for="rodo" data-astro-cid-ivdev4kk="">{contactForm.consent}</label>
                                 </div>
                                 <button type="submit" class="btn btn-primary" data-astro-cid-ivdev4kk="">
-                                    Wyślij wiadomość
+                                    {contactForm.submit}
                                 </button>
                             </div>
                         </form>

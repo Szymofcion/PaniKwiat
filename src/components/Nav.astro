@@ -1,19 +1,39 @@
 ---
-const pathname = Astro.url.pathname;
+import { normalizeLang, siteCopy, type SiteLang } from "../i18n/site";
 
-const links = [
-    { href: "/#skomponuj", label: "Skomponuj dekorację", sub: "Daj się ponieść fantazji" },
-    {
-        href: pathname === "/cennik" ? "#dekoracje" : "/#dekoracje",
-        label: "Gotowe od ręki",
-        sub: "gotowe produkty",
-        active: pathname === "/",
-    },
-    { href: "/cennik", label: "Cennik", sub: "sprawdź ceny", active: pathname === "/cennik" },
-    { href: "/#kimjestem", label: "Kim jestem?", sub: "poznajmy się" },
-    { href: "/#opinie", label: "Poznaj opinie", sub: "Mówią o mnie..." },
-    { href: "/#footer", label: "Kontakt", sub: "porozmawiajmy" },
-];
+const lang = normalizeLang(Astro.props.lang as SiteLang);
+const rawPath = Astro.url.pathname;
+const basePath = rawPath.replace(/^\/(en|de)(?=\/|$)/, "") || "/";
+const prefix = lang === "pl" ? "" : `/${lang}`;
+const onPricing = basePath.startsWith("/cennik");
+const activePath = basePath.endsWith("/") && basePath !== "/" ? basePath.slice(0, -1) : basePath;
+
+const mapHref = (href: string) => {
+    if (href.startsWith("#")) return href;
+    if (href.startsWith("/#")) return `${prefix}${href}`;
+    if (href === "/cennik") return `${prefix}/cennik`;
+    return `${prefix}${href}`;
+};
+
+const navCopy = siteCopy[lang].nav;
+
+const links = navCopy.links.map((link) => {
+    const href = link.href.includes("#dekoracje") && onPricing ? "#dekoracje" : link.href;
+    const finalHref = mapHref(href);
+    const active =
+        link.href === "/cennik" ? activePath.startsWith("/cennik") : activePath === "/" && link.href !== "/cennik";
+    return { ...link, href: finalHref, active };
+});
+
+const languages = [
+    { code: "pl", label: "PL" },
+    { code: "en", label: "EN" },
+    { code: "de", label: "DE" },
+].map((l) => {
+    const base = activePath === "/" ? "/" : activePath || "/";
+    const href = l.code === "pl" ? base : `/${l.code}${base}`;
+    return { ...l, href };
+});
 ---
 
 <div class="py-0 navigation" data-astro-cid-3ef6ksr2>
@@ -25,9 +45,9 @@ const links = [
             <!-- Logo -->
             <div class="flex flex-row items-center justify-between xl:justify-start" data-astro-cid-3ef6ksr2>
                 <a
-                    href="/"
+                    href={prefix || "/"}
                     class="lg:pr-8 text-black inline-flex items-center gap-3"
-                    aria-label="Strona główna"
+                    aria-label={lang === "pl" ? "Strona główna" : lang === "en" ? "Home" : "Startseite"}
                     data-astro-cid-3ef6ksr2
                 >
                     <svg
@@ -97,7 +117,7 @@ const links = [
                 <button
                     id="nav-toggle"
                     class="inline-flex items-center justify-center p-2 text-slate-400 hover:text-black focus:outline-none focus:text-black xl:hidden"
-                    aria-label="Otwórz menu"
+                    aria-label={navCopy.ariaOpen}
                     aria-expanded="false"
                     type="button"
                     data-astro-cid-3ef6ksr2
@@ -138,7 +158,7 @@ const links = [
 
             <nav
                 id="primary-nav"
-                class="flex-col xl:items-center flex-grow hidden xl:pb-0 xl:flex xl:justify-end xl:flex-row"
+                class="flex-col xl:items-center flex-grow hidden xl:pb-0 xl:flex xl:justify-end xl:flex-row gap-4"
                 data-astro-cid-3ef6ksr2
             >
                 {
@@ -153,6 +173,15 @@ const links = [
                         </a>
                     ))
                 }
+                <div class="lang-switch">
+                    {
+                        languages.map((l) => (
+                            <a class={`lang-pill ${l.code === lang ? "active" : ""}`} href={l.href}>
+                                {l.label}
+                            </a>
+                        ))
+                    }
+                </div>
             </nav>
         </div>
     </div>
@@ -164,11 +193,13 @@ const links = [
     const iconMenu = document.querySelector("#icon-menu");
     const iconClose = document.querySelector("#icon-close");
     const overlay = document.querySelector("#nav-overlay");
+    const navLabels = { open: "${navCopy.ariaOpen}", close: "${navCopy.ariaClose}" };
 
     btn?.addEventListener("click", () => {
         const isOpen = nav.classList.toggle("hidden");
         const expanded = !isOpen;
         btn.setAttribute("aria-expanded", expanded);
+        btn.setAttribute("aria-label", expanded ? navLabels.close : navLabels.open);
 
         iconMenu.classList.toggle("hidden", expanded);
         iconClose.classList.toggle("hidden", !expanded);
@@ -284,5 +315,37 @@ const links = [
         .navigation-overlay[data-astro-cid-3ef6ksr2] {
             display: none;
         }
+    }
+
+    .lang-switch {
+        display: flex;
+        gap: 8px;
+        padding: 6px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        align-items: center;
+    }
+
+    .lang-pill {
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #151515;
+        border: 1px solid transparent;
+        transition: 0.2s ease-in-out all;
+    }
+
+    .lang-pill:hover {
+        border-color: #2d2d2d33;
+        background: #e6e6e6;
+    }
+
+    .lang-pill.active {
+        background: #8cae6b;
+        color: #fff;
+        border-color: #8cae6b;
+        box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.35);
     }
 </style>
