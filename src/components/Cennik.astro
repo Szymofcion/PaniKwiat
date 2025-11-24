@@ -2,44 +2,28 @@
 import talerzZloty from "../assets/cennik/talerz-swiateczny-zloty.jpg";
 import talerzOzdobny from "../assets/cennik/talerz-ozdobn-maly.jpg";
 import aranzacjaKwiaty from "../assets/cennik/aranzacja-swiateczna-zrobiona-ze-sztucznych-kwiatow.jpg";
+import { facebookLink, pricingCopy, type PricingLang } from "../i18n/pricing";
+import { normalizeLang } from "../i18n/lang";
 
-const facebookLink = "https://www.facebook.com/marketplace/profile/100058801496320/?ref=permalink";
+interface Props {
+    lang?: PricingLang;
+}
 
-const items = [
-    {
-        title: "Złoty talerz świąteczny",
-        lead: "Metaliczny talerz z zimowymi akcentami – gotowy, aby w kilka sekund odmienić stół.",
-        details: ["Wysokość 20 cm, średnica 30 cm.", "Cena 145,00 zł.", "Plus koszty wysyłki."],
-        image: talerzZloty,
-        gallery: [talerzZloty.src],
-        alt: "Złoty talerz świąteczny z dekoracjami",
-    },
-    {
-        title: "Talerz ozdobny",
-        lead: "Neutralna, elegancka baza z subtelną kompozycją, która wpasuje się w każde wnętrze.",
-        details: ["Wysokość 20 cm, średnica 30 cm.", "Cena 155,00 zł.", "Plus koszty wysyłki."],
-        image: talerzOzdobny,
-        gallery: [talerzOzdobny.src],
-        alt: "Dekoracyjny talerz z kompozycją",
-    },
-    {
-        title: "Aranżacja świąteczna w wiklinowym koszu",
-        lead: "Sztuczne kwiaty, bombki i światełka na wiklinowej podstawie – efektowna ozdoba na cały sezon.",
-        details: ["Wysokość 70 cm, średnica 50 cm.", "Cena 360,00 zł.", "Plus koszty wysyłki."],
-        image: aranzacjaKwiaty,
-        gallery: [aranzacjaKwiaty.src],
-        alt: "Aranżacja świąteczna ze sztucznych kwiatów",
-    },
-];
+const { lang: langProp } = Astro.props as Props;
+const lang = normalizeLang(langProp);
+const copy = pricingCopy[lang];
+const images = [talerzZloty, talerzOzdobny, aranzacjaKwiaty];
+const items = copy.items.map((item, index) => ({
+    ...item,
+    image: images[index],
+    gallery: [images[index]?.src].filter(Boolean),
+}));
 ---
 
 <section id="cennik" class="pricing">
     <div class="pricing-head">
-        <h1>Gotowe dekoracje świąteczne, od razu do kupienia</h1>
-        <p class="intro">
-            Wybierz talerze i aranżacje przygotowane w estetyce Pani Kwiat. Każdy produkt ma wymiary, cenę i szybki
-            przycisk „Kup teraz” kierujący prosto na Facebook Marketplace.
-        </p>
+        <h1>{copy.heading}</h1>
+        <p class="intro">{copy.intro}</p>
     </div>
     <div class="container">
         <div class="pricing-grid">
@@ -52,7 +36,7 @@ const items = [
                                 class="pricing-image"
                                 type="button"
                                 data-dialog={dialogId}
-                                aria-label={`Powiększ ${item.title}`}
+                                aria-label={`${copy.dialogAria} ${item.title}`}
                             >
                                 <img src={item.image.src} alt={item.alt} loading="lazy" decoding="async" />
                             </button>
@@ -60,12 +44,12 @@ const items = [
                                 <h3>{item.title}</h3>
                                 <p class="lead">{item.lead}</p>
                                 <ul>
-                                    {item.details.map((line) => (
+                                    {item.details.map((line, lineIndex) => (
                                         <li>{line}</li>
                                     ))}
                                 </ul>
                                 <a class="btn btn-primary" href={facebookLink} target="_blank" rel="noreferrer">
-                                    Kup teraz
+                                    {copy.buyNow}
                                 </a>
                             </div>
 
@@ -84,7 +68,7 @@ const items = [
                                     </div>
                                 </article>
                                 <form method="dialog">
-                                    <button aria-label="Zamknij podgląd" class="close-button" type="submit">
+                                    <button aria-label={copy.closeLabel} class="close-button" type="submit">
                                         ×
                                     </button>
                                 </form>

@@ -1,0 +1,28 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Nav from "../../components/Nav.astro";
+import Hero from "../../components/Hero.astro";
+import Main from "../../components/Main.astro";
+import Cta from "../../components/Cta.astro";
+import About from "../../components/About.astro";
+import Opinion from "../../components/Opinion.astro";
+import Footer from "../../components/Footer.astro";
+import { siteCopy, type SiteLang } from "../../i18n/site";
+
+const lang: SiteLang = "en";
+const copy = siteCopy[lang];
+---
+
+<Layout lang={lang} title={copy.meta.title} description={copy.meta.description}>
+    <Header lang={lang} />
+    <Nav lang={lang} />
+    <Hero lang={lang} />
+    <main id="skomponuj">
+        <Main lang={lang} />
+    </main>
+    <Cta lang={lang} />
+    <About lang={lang} />
+    <Opinion lang={lang} />
+    <Footer lang={lang} />
+</Layout>

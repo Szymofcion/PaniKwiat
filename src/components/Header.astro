@@ -1,12 +1,19 @@
+---
+import { normalizeLang, siteCopy, type SiteLang } from "../i18n/site";
+
+const lang = normalizeLang(Astro.props.lang as SiteLang);
+const copy = siteCopy[lang];
+---
+
 <header class="header section">
   <div class="container">
     <div class="header-wrapper">
-      <p><strong>Masz pytanie?</strong> Skontaktuj się ze mną</p>
+      <p><strong>{copy.header.question}</strong> {copy.header.contact}</p>
 
       <!-- 📞 Telefon -->
       <a
         href="tel:+48501744994"
-        title="Kwiaty na każdą okazję"
+        title={copy.header.contact}
         class="header-phone"
       >
         <svg
@@ -27,7 +34,7 @@
       <!-- ✉️ E-mail -->
       <a
         href="mailto:panikwiat@gmail.com"
-        title="Skontaktuj się z profesjonalną kwiaciarnią"
+        title={copy.header.contact}
         class="header-phone"
       >
         <svg

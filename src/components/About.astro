@@ -1,37 +1,28 @@
+---
+import { normalizeLang, siteCopy, type SiteLang } from "../i18n/site";
+
+const lang = normalizeLang(Astro.props.lang as SiteLang);
+const copy = siteCopy[lang].about;
+const { contactForm } = siteCopy[lang];
+---
+
 <section class="about-me" id="kimjestem" data-astro-cid-v2cbyr3p="">
     <div class="container" data-astro-cid-v2cbyr3p="">
-        <h2 data-astro-cid-v2cbyr3p="">
-            Pani Kwiat - Idealne dekoracje kwiatowe na każdą okazję
-        </h2>
+        <h2 data-astro-cid-v2cbyr3p="">{copy.title}</h2>
         <div class="wrapper" data-astro-cid-v2cbyr3p="">
             <div class="image-wrapper" data-astro-cid-v2cbyr3p=""> <img src="/panikwiat.jpg" decoding="async"
                     loading="lazy" alt="" data-astro-cid-v2cbyr3p="" width="800" height="800"> </div>
             <div class="text-wrapper" data-astro-cid-v2cbyr3p="">
-                <h3 data-astro-cid-v2cbyr3p="">
-                    Kim jestem?
-                </h3>
-                <p data-astro-cid-v2cbyr3p="">Swoją przygodę z kwiatami rozpoczęłam w Londynie w 1994 roku. Ukończyłam
-                    tam prywatną
-                    szkołę układania kwiatów Jane Packer. W niej poznałam wszystkie tajniki technik florystycznych
-                    jak również tworzenia kompozycji. Po kilku latach pracy w tamtejszej kwiaciarni, wróciłam do
-                    Polski, gdzie od wielu lat prowadzę swoją firmę florystyczną. Moim klientami, była TV, salony
-                    samochodowe miedzy innymi Team z Długołeki, Pizza Hut, Starbucks, festiwal Chopinowski w
-                    Dusznikach, przegląd Piosenki Aktorskiej. Przez wiele lat byłam dekoratorem kościoła na
-                    Popowicach.
-                </p>
-                <p data-astro-cid-v2cbyr3p="">
-                    Ostatnich kilka lat spędziłam w Brisbane ( Australia), gdzie pośród 12 florystów z różnych stron
-                    świata rozwijałam swoje umiejętości i uczyłam się florystyki, nie tylko europejskiej, ale także
-                    miałam okazje poznać trendy ogólnoświatowe poprzez różnorodność narodową naszego zespołu.
-                    Jestem w Polsce. Zapraszam Państwa do odwieszenia mojej strony internetowej i kontaktu ze mną.
-                </p> <button class="btn btn-white" onclick="window.kontaktowy1.showModal()"
-                    data-astro-cid-fziqq5va="">Skontaktuj się ze mną</button>
+                <h3 data-astro-cid-v2cbyr3p="">{copy.heading}</h3>
+                {copy.paragraphs.map((paragraph) => (
+                    <p data-astro-cid-v2cbyr3p="">{paragraph}</p>
+                ))} <button class="btn btn-white" onclick="window.kontaktowy1.showModal()"
+                    data-astro-cid-fziqq5va="">{copy.contactCta}</button>
                 <dialog id="kontaktowy1" data-astro-cid-fziqq5va="">
                     <div data-astro-cid-v2cbyr3p="">
                         <div class="wrapper-form" data-astro-cid-v2cbyr3p="">
                             <div class="phone-wrapper" data-astro-cid-v2cbyr3p="">
-                                <h3 data-astro-cid-v2cbyr3p="">Skontaktuj się ze mną<br data-astro-cid-v2cbyr3p="">
-                                    telefonicznie</h3>
+                                <h3 data-astro-cid-v2cbyr3p="">{contactForm.phoneHeading}</h3>
                                 <hr data-astro-cid-v2cbyr3p=""> <a href="tel:+48501744994" class="phone"
                                     data-astro-cid-v2cbyr3p=""> <svg xmlns="http://www.w3.org/2000/svg" width="42"
                                         height="42" viewBox="0 0 42 42" fill="white" data-astro-cid-v2cbyr3p="">
@@ -40,35 +31,35 @@
                                             fill="#FFF" data-astro-cid-v2cbyr3p=""></path>
                                     </svg>
                                     <span data-astro-cid-v2cbyr3p="">
-                                        501 744 994
+                                        {contactForm.phoneCta}
                                     </span> </a>
                             </div>
                             <div class="form-wrapper" data-astro-cid-v2cbyr3p="">
-                                <h3 data-astro-cid-v2cbyr3p="">Lub przez formularz kontaktowy</h3>
+                                <h3 data-astro-cid-v2cbyr3p="">{contactForm.formHeading}</h3>
                                 <form target="_blank" action="https://formsubmit.co/panikwiat@gmail.com" method="POST"
                                     data-astro-reload="" data-astro-cid-v2cbyr3p="">
                                     <div class="form-group" data-astro-cid-v2cbyr3p="">
                                         <div class="form-row" data-astro-cid-v2cbyr3p="">
                                             <div class="col" data-astro-cid-v2cbyr3p=""> <label
-                                                    data-astro-cid-v2cbyr3p="">Wprowadź imię: *</label> <input
+                                                    data-astro-cid-v2cbyr3p="">{contactForm.nameLabel}</label> <input
                                                     type="text" name="name" class="form-control"
-                                                    placeholder="Wprowadź imię..." required=""
+                                                    placeholder={contactForm.namePlaceholder} required=""
                                                     data-astro-cid-v2cbyr3p=""> </div>
                                             <div class="col" data-astro-cid-v2cbyr3p=""> <label
-                                                    data-astro-cid-v2cbyr3p="">Wprowadź numer telefonu: *</label> <input
+                                                    data-astro-cid-v2cbyr3p="">{contactForm.phoneLabel}</label> <input
                                                     type="text" name="name" class="form-control"
-                                                    placeholder="Wprowadź numer telefonu..." required=""
+                                                    placeholder={contactForm.phonePlaceholder} required=""
                                                     data-astro-cid-v2cbyr3p=""> </div>
                                             <div class="col" data-astro-cid-v2cbyr3p=""> <label
-                                                    data-astro-cid-v2cbyr3p="">Wprowadź adres e-mail: *</label> <input
+                                                    data-astro-cid-v2cbyr3p="">{contactForm.emailLabel}</label> <input
                                                     type="email" name="email" class="form-control"
-                                                    placeholder="Wprowadź adres e-mail..." required=""
+                                                    placeholder={contactForm.emailPlaceholder} required=""
                                                     data-astro-cid-v2cbyr3p=""> </div>
                                         </div>
                                     </div>
                                     <div class="form-group" data-astro-cid-v2cbyr3p=""> <label
-                                            data-astro-cid-v2cbyr3p="">Wiadomość: *</label>
-                                        <textarea placeholder="Napisz wiadomość..." class="form-control" name="Wiadomość: *" rows="6" required=""
+                                            data-astro-cid-v2cbyr3p="">{contactForm.messageLabel}</label>
+                                        <textarea placeholder={contactForm.messagePlaceholder} class="form-control" name="Wiadomość: *" rows="6" required=""
                                             data-astro-cid-v2cbyr3p=""></textarea>
                                     </div> <input type="text" name="_honey" style="display:none"
                                         data-astro-cid-v2cbyr3p=""> <input type="hidden" name="_next"
@@ -77,11 +68,8 @@
                                     <div class="btn-form-wrapper" data-astro-cid-v2cbyr3p="">
                                         <div data-astro-cid-v2cbyr3p=""> <input type="checkbox" id="rodo"
                                                 name="rodo" value="Boat" data-astro-cid-v2cbyr3p=""> <label
-                                                for="rodo" data-astro-cid-v2cbyr3p=""> Wyrażam zgodę na
-                                                przetwarzanie moich danych osobowych w celu realizacji tego
-                                                zapytania.*</label> </div> <button type="submit"
-                                            class="btn btn-primary" data-astro-cid-v2cbyr3p="">Wyślij
-                                            wiadomość</button>
+                                                for="rodo" data-astro-cid-v2cbyr3p="">{contactForm.consent}</label> </div> <button type="submit"
+                                            class="btn btn-primary" data-astro-cid-v2cbyr3p="">{contactForm.submit}</button>
                                     </div>
                                 </form>
                             </div>

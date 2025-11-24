@@ -1,29 +1,28 @@
+---
+import { normalizeLang, siteCopy, type SiteLang } from "../i18n/site";
+
+const lang = normalizeLang(Astro.props.lang as SiteLang);
+const copy = siteCopy[lang];
+const { contactForm } = copy;
+---
+
 <section class="hero" data-astro-cid-bbe6dxrz="">
     <div class="container" data-astro-cid-bbe6dxrz="">
         <div class="hero-wrapper" data-astro-cid-bbe6dxrz="">
             <div class="top-wrapper" data-astro-cid-bbe6dxrz="">
-                <h1 data-astro-cid-bbe6dxrz="">
-                    Odkryj piękno i energię,<br data-astro-cid-bbe6dxrz="" />
-                    drzemiące w kwiatach
-                </h1>
+                <h1 data-astro-cid-bbe6dxrz="">{copy.hero.heading}</h1>
                 <hr data-astro-cid-bbe6dxrz="" />
-                <p data-astro-cid-bbe6dxrz="">
-                    Kwiaty przeobrażają w pachnący ogród każde miejsce swoja <br data-astro-cid-bbe6dxrz="" /> obecnością,
-                    kolorem, zapachem i formą wyczarowaną ręką <br data-astro-cid-bbe6dxrz="" />artysty.
-                </p>
+                <p data-astro-cid-bbe6dxrz="">{copy.hero.paragraph}</p>
             </div>
             <div class="bottom-wrapper" data-astro-cid-bbe6dxrz="">
                 <button class="btn btn-white" onclick="window.kontaktowy.showModal()" data-astro-cid-fziqq5va="">
-                    Skontaktuj się ze mną
+                    {copy.hero.contactCta}
                 </button>
                 <dialog id="kontaktowy" data-astro-cid-fziqq5va="">
                     <div data-astro-cid-bbe6dxrz="">
                         <div class="wrapper-form" data-astro-cid-bbe6dxrz="">
                             <div class="phone-wrapper" data-astro-cid-bbe6dxrz="">
-                                <h3 data-astro-cid-bbe6dxrz="">
-                                    Skontaktuj się ze mną<br data-astro-cid-bbe6dxrz="" />
-                                    telefonicznie
-                                </h3>
+                                <h3 data-astro-cid-bbe6dxrz="">{contactForm.phoneHeading}</h3>
                                 <hr data-astro-cid-bbe6dxrz="" />
                                 <a href="tel:+48501744994" class="phone" data-astro-cid-bbe6dxrz="">
                                     <svg
@@ -43,11 +42,11 @@
                                         >
                                         </path>
                                     </svg>
-                                    <span data-astro-cid-bbe6dxrz="">501 744 994</span>
+                                    <span data-astro-cid-bbe6dxrz="">{contactForm.phoneCta}</span>
                                 </a>
                             </div>
                             <div class="form-wrapper" data-astro-cid-bbe6dxrz="">
-                                <h3 data-astro-cid-bbe6dxrz="">Lub przez formularz kontaktowy</h3>
+                                <h3 data-astro-cid-bbe6dxrz="">{contactForm.formHeading}</h3>
                                 <form
                                     target="_blank"
                                     action="https://formsubmit.co/panikwiat@gmail.com"
@@ -58,34 +57,34 @@
                                     <div class="form-group" data-astro-cid-bbe6dxrz="">
                                         <div class="form-row" data-astro-cid-bbe6dxrz="">
                                             <div class="col" data-astro-cid-bbe6dxrz="">
-                                                <label data-astro-cid-bbe6dxrz="">Wprowadź imię: *</label>
+                                                <label data-astro-cid-bbe6dxrz="">{contactForm.nameLabel}</label>
                                                 <input
                                                     type="text"
                                                     name="name"
                                                     class="form-control"
-                                                    placeholder="Wprowadź imię..."
+                                                    placeholder={contactForm.namePlaceholder}
                                                     required=""
                                                     data-astro-cid-bbe6dxrz=""
                                                 />
                                             </div>
                                             <div class="col" data-astro-cid-bbe6dxrz="">
-                                                <label data-astro-cid-bbe6dxrz="">Wprowadź numer telefonu: *</label>
+                                                <label data-astro-cid-bbe6dxrz="">{contactForm.phoneLabel}</label>
                                                 <input
                                                     type="text"
                                                     name="name"
                                                     class="form-control"
-                                                    placeholder="Wprowadź numer telefonu..."
+                                                    placeholder={contactForm.phonePlaceholder}
                                                     required=""
                                                     data-astro-cid-bbe6dxrz=""
                                                 />
                                             </div>
                                             <div class="col" data-astro-cid-bbe6dxrz="">
-                                                <label data-astro-cid-bbe6dxrz="">Wprowadź adres e-mail: *</label>
+                                                <label data-astro-cid-bbe6dxrz="">{contactForm.emailLabel}</label>
                                                 <input
                                                     type="email"
                                                     name="email"
                                                     class="form-control"
-                                                    placeholder="Wprowadź adres e-mail..."
+                                                    placeholder={contactForm.emailPlaceholder}
                                                     required=""
                                                     data-astro-cid-bbe6dxrz=""
                                                 />
@@ -93,9 +92,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group" data-astro-cid-bbe6dxrz="">
-                                        <label data-astro-cid-bbe6dxrz="">Wiadomość: *</label>
+                                        <label data-astro-cid-bbe6dxrz="">{contactForm.messageLabel}</label>
                                         <textarea
-                                            placeholder="Napisz wiadomość..."
+                                            placeholder={contactForm.messagePlaceholder}
                                             class="form-control"
                                             name="Wiadomość: *"
                                             rows="6"
@@ -122,12 +121,11 @@
                                                 data-astro-cid-bbe6dxrz=""
                                             />
                                             <label for="rodo" data-astro-cid-bbe6dxrz="">
-                                                Wyrażam zgodę na przetwarzanie moich danych osobowych w celu realizacji
-                                                tego zapytania.*
+                                                {contactForm.consent}
                                             </label>
                                         </div>
                                         <button type="submit" class="btn btn-primary" data-astro-cid-bbe6dxrz="">
-                                            Wyślij wiadomość
+                                            {contactForm.submit}
                                         </button>
                                     </div>
                                 </form>
@@ -144,7 +142,7 @@
                     class="btn btn-white-outline"
                     data-astro-cid-bbe6dxrz=""
                 >
-                    sprawdź gotowe produkty
+                    {copy.hero.readyCta}
                 </a>
             </div>
         </div>
@@ -154,7 +152,7 @@
     <div class="container" data-astro-cid-bbe6dxrz="">
         <div class="arrow-wrapper" data-astro-cid-bbe6dxrz="">
             <a href="#discamler" data-astro-cid-bbe6dxrz="">
-                <span data-astro-cid-bbe6dxrz="">Dowiedz się więcej</span>
+                <span data-astro-cid-bbe6dxrz="">{copy.hero.learnMore}</span>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="216"
@@ -188,10 +186,7 @@
             </a>
         </div>
         <h3 class="hero-discamler" id="discamler" data-astro-cid-bbe6dxrz="">
-            Kwiaty wyrażają nasze uczucia, miłość, przywiązanie, pamięć. Ich piękno ozdobi każde miejsce, w którym
-            przebywamy, nasze domy, biura, są dopełnieniem uroczystości rodzinnych, koncertów, ślubów i ostatnich
-            pożegnań. Kwiaty zdobią hotele, witryny sklepowe, stoły, gdzie pośród porcelany
-            <br data-astro-cid-bbe6dxrz="" />i srebra cieszą nasze oczy i pieszczą nasze zmysły.
+            {copy.hero.disclaimer}
         </h3>
     </div>
 </section>
