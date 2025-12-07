@@ -2,70 +2,55 @@ import { normalizeLang, type Lang } from "./lang";
 
 export type SiteLang = Lang;
 
-export const siteCopy: Record<SiteLang, {
-    meta: { title: string; description: string };
-    nav: { links: { href: string; label: string; sub: string }[]; ariaOpen: string; ariaClose: string };
-    header: { question: string; contact: string };
-    hero: {
-        heading: string;
-        paragraph: string;
-        contactCta: string;
-        readyCta: string;
-        learnMore: string;
-        disclaimer: string;
-    };
-    contactForm: {
-        phoneHeading: string;
-        phoneCta: string;
-        formHeading: string;
-        nameLabel: string;
-        phoneLabel: string;
-        emailLabel: string;
-        messageLabel: string;
-        namePlaceholder: string;
-        phonePlaceholder: string;
-        emailPlaceholder: string;
-        messagePlaceholder: string;
-        consent: string;
-        submit: string;
-    };
-    cta: { heading: string; subheading: string; button: string };
-    about: { title: string; heading: string; paragraphs: string[]; contactCta: string };
-    main: {
-        title: string;
-        viewPhotos: string;
-        sections: [
-            {
-                numeral: string;
-                heading: string;
-                body: string;
-                cards: [string, string, string, string];
-            },
-            {
-                numeral: string;
-                heading: string;
-                body: string;
-                priceNote: string;
-            },
-            {
-                numeral: string;
-                heading: string;
-                body: string;
-                priceNote: string;
-                cards: [string, string, string];
-            },
-            {
-                numeral: string;
-                heading: string;
-                body: string;
-                list: string[];
-            }
-        ];
-        christmas: { heading: string; body: string };
-    };
-    opinion: { heading: string; items: { author: string; text: string }[] };
-    footer: { help: string; copyright: string };
-}> = {
+type MainSection = {
+    numeral: string;
+    heading: string;
+    body: string;
+    cards?: string[];
+    priceNote?: string;
+    list?: string[];
+};
+
+export const siteCopy: Record<
+    SiteLang,
+    {
+        meta: { title: string; description: string };
+        nav: { links: { href: string; label: string; sub: string }[]; ariaOpen: string; ariaClose: string };
+        header: { question: string; contact: string };
+        hero: {
+            heading: string;
+            paragraph: string;
+            contactCta: string;
+            readyCta: string;
+            learnMore: string;
+            disclaimer: string;
+        };
+        contactForm: {
+            phoneHeading: string;
+            phoneCta: string;
+            formHeading: string;
+            nameLabel: string;
+            phoneLabel: string;
+            emailLabel: string;
+            messageLabel: string;
+            namePlaceholder: string;
+            phonePlaceholder: string;
+            emailPlaceholder: string;
+            messagePlaceholder: string;
+            consent: string;
+            submit: string;
+        };
+        cta: { heading: string; subheading: string; button: string };
+        about: { title: string; heading: string; paragraphs: string[]; contactCta: string };
+        main: {
+            title: string;
+            viewPhotos: string;
+            sections: MainSection[];
+        };
+        opinion: { heading: string; items: { author: string; text: string }[] };
+        footer: { help: string; copyright: string };
+    }
+> = {
     pl: {
         meta: {
             title: "Pani Kwiat – odkryj piękno i energię drzemiące w kwiatach",
@@ -107,8 +92,7 @@ export const siteCopy: Record<SiteLang, {
             phonePlaceholder: "Wprowadź numer telefonu...",
             emailPlaceholder: "Wprowadź adres e-mail...",
             messagePlaceholder: "Napisz wiadomość...",
-            consent:
-                "Wyrażam zgodę na przetwarzanie moich danych osobowych w celu realizacji tego zapytania.*",
+            consent: "Wyrażam zgodę na przetwarzanie moich danych osobowych w celu realizacji tego zapytania.*",
             submit: "Wyślij wiadomość",
         },
         cta: {
@@ -131,6 +115,11 @@ export const siteCopy: Record<SiteLang, {
             sections: [
                 {
                     numeral: "I",
+                    heading: "Święta Bożego Narodzenia",
+                    body: "Zbliżają się Święta Bożego Narodzenia. Już za parę chwil będziemy wypatrywać pierwszej gwiazdki i płatków śniegu. Zasiądziemy do stołu w gronie Bliskich nam osób, radując się ich obecnością. Dopełnieniem tego niezwykłego czasu są wszelkiego rodzaju ozdoby świąteczne. Choinki, stroiki, wieńce i anioły. Zapraszam do kontaktu ze mną. Na Twoje życzenie powstanie dekoracja, która będzie podkreślała ten niezwykły świąteczny nastrój. Pomagamy również ubierać choinki.",
+                },
+                {
+                    numeral: "II",
                     heading: "Dekoracje ślubne",
                     body: "Wielkim wydarzeniem w naszym życiu jest uroczystość zaślubin. Niewątpliwie kwiaty są jej nieodzownym atrybutem. Zachęcam do stworzenia niepowtarzalnej oprawy kwiatowej przygotowanej specjalnie dla Państwa. Nie tylko pod względem doboru kolorów, ale również dostosowanej do charakteru, temperamentu i urody Państwa Młodych. Dla Niej skomponowana wiązanka ślubna, dla Niego butonierka. Będzie ona spójna z wystrojem sali, kościoła, samochodu i tortu. Dla druhen i dziewczynek wianki, małe wiązanki i przypinki do włosów.",
                     cards: [
@@ -141,13 +130,13 @@ export const siteCopy: Record<SiteLang, {
                     ],
                 },
                 {
-                    numeral: "II",
+                    numeral: "III",
                     heading: "Ringi, wieńce, serca",
                     body: "Wianki na każda okazję, urodziny, ozdobny wianek na drzwi, lub jako dekoracje stołu ze świecą. Zrobimy je dla Ciebie z żywych, suchych i sztucznych kwiatów. Będzie on przepiękną ozdobą w witrynach sklepowych. Możemy położyć go na trumnie w ostatnim pożegnaniu.",
                     priceNote: "Cena od 250 zł. w zależności od wielkości i użytych kwiatów.",
                 },
                 {
-                    numeral: "III",
+                    numeral: "IV",
                     heading: "Wiązanki pogrzebowe",
                     body: "Każdy z nas na swojej życiowej drodze staje przed trumną osoby, która odeszła z tego świata. W hołdzie i pamięci naszym Ukochanym mamy ofertę, w której można stworzyć lub wybrać z bogatej kolekcji kompozycje, które będą odzwierciedleniem lub uhonorowaniem życia osoby zmarłej.",
                     priceNote:
@@ -155,7 +144,7 @@ export const siteCopy: Record<SiteLang, {
                     cards: ["Wiązanki pogrzebowe", "Serca kwiatowe", "Aranżacje na trumnę"],
                 },
                 {
-                    numeral: "IV",
+                    numeral: "V",
                     heading: "Pozostałe dekoracje",
                     body: "Zapraszamy do zapoznania się z naszą ofertą, która obejmuje resztę produktów. W niej pudełka kwiatowe na każda okazję, w każdej wielkości i kolorystyce, na ceremonie chrztu, w rocznice urodzin, na imieniny, czy z gratulacjami. Mamy również bukiety na każdą okazję z żywych i suchych kwiatów. Proponujemy aranżacje w wazach i innych ozdobnych pojemnikach. Mogą to być małe wiązanki lub tez ogromne bukiety sceniczne, kościelne, na eventy, promocje w salonach samochodowych i w salach konferencyjnych. Mamy również kosze upominkowe.",
                     list: [
@@ -169,10 +158,6 @@ export const siteCopy: Record<SiteLang, {
                     ],
                 },
             ],
-            christmas: {
-                heading: "Święta Bożego Narodzenia",
-                body: "Zbliżają się Święta Bożego Narodzenia. Już za parę chwil będziemy wypatrywać pierwszej gwiazdki i płatków śniegu. Zasiądziemy do stołu w gronie Bliskich nam osób, radując się ich obecnością. Dopełnieniem tego niezwykłego czasu są wszelkiego rodzaju ozdoby świąteczne. Choinki, stroiki, wieńce i anioły. Zapraszam do kontaktu ze mną. Na Twoje życzenie powstanie dekoracja, która będzie podkreślała ten niezwykły świąteczny nastrój. Pomagamy również ubierać choinki.",
-            },
         },
         opinion: {
             heading: "Co mówią o mnie moi Klienci?",
@@ -269,6 +254,11 @@ export const siteCopy: Record<SiteLang, {
             sections: [
                 {
                     numeral: "I",
+                    heading: "Christmas season",
+                    body: "Christmas is coming soon. We'll be watching for the first star and snowflakes, sitting at the table with loved ones. Decorations complete this special time: trees, centerpieces, wreaths and angels. Get in touch and I will prepare décor that highlights the festive mood. I also help decorate Christmas trees.",
+                },
+                {
+                    numeral: "II",
                     heading: "Wedding decorations",
                     body: "A wedding is one of life's great events, and flowers are its essential element. I encourage you to create a one-of-a-kind floral setting prepared just for you—matched to your colours, but also to the character, temperament, and style of the couple. For her, a tailored bridal bouquet; for him, a boutonniere. Everything stays cohesive with the hall, church, car, and cake décor. For bridesmaids and flower girls: wreaths, small bouquets, and hair pins.",
                     cards: [
@@ -279,13 +269,13 @@ export const siteCopy: Record<SiteLang, {
                     ],
                 },
                 {
-                    numeral: "II",
+                    numeral: "III",
                     heading: "Hoops, wreaths, hearts",
                     body: "Wreaths for any occasion—birthdays, a door accent, or a table piece with a candle. We craft them from fresh, dried, or faux flowers. They beautifully dress shop windows and can be placed on a coffin for a final farewell.",
                     priceNote: "Price from 250 PLN, depending on size and flowers used.",
                 },
                 {
-                    numeral: "III",
+                    numeral: "IV",
                     heading: "Funeral arrangements",
                     body: "We all eventually stand by a loved one's coffin. To honour their memory, I offer a wide collection or bespoke pieces that reflect and celebrate the life of the departed.",
                     priceNote:
@@ -293,7 +283,7 @@ export const siteCopy: Record<SiteLang, {
                     cards: ["Funeral sprays", "Floral hearts", "Coffin arrangements"],
                 },
                 {
-                    numeral: "IV",
+                    numeral: "V",
                     heading: "Other decorations",
                     body: "Discover the rest of the collection: flower boxes for any occasion, in every size and colour palette—for christenings, birthdays, name days or congratulations. Bouquets for all occasions from fresh and dried flowers. Arrangements in vases and decorative vessels—small posies or large stage, church and event bouquets, showrooms and conference setups. Gift hampers are also available.",
                     list: [
@@ -307,10 +297,6 @@ export const siteCopy: Record<SiteLang, {
                     ],
                 },
             ],
-            christmas: {
-                heading: "Christmas season",
-                body: "Christmas is coming soon. We'll be watching for the first star and snowflakes, sitting at the table with loved ones. Decorations complete this special time: trees, centerpieces, wreaths and angels. Get in touch and I will prepare décor that highlights the festive mood. I also help decorate Christmas trees.",
-            },
         },
         opinion: {
             heading: "What do my clients say?",
@@ -384,8 +370,7 @@ export const siteCopy: Record<SiteLang, {
             phonePlaceholder: "Telefonnummer eingeben...",
             emailPlaceholder: "E-Mail eingeben...",
             messagePlaceholder: "Nachricht schreiben...",
-            consent:
-                "Ich stimme der Verarbeitung meiner personenbezogenen Daten zum Zweck dieser Anfrage zu.*",
+            consent: "Ich stimme der Verarbeitung meiner personenbezogenen Daten zum Zweck dieser Anfrage zu.*",
             submit: "Nachricht senden",
         },
         cta: {
@@ -408,6 +393,11 @@ export const siteCopy: Record<SiteLang, {
             sections: [
                 {
                     numeral: "I",
+                    heading: "Weihnachtszeit",
+                    body: "Weihnachten steht vor der Tür. Bald schauen wir nach dem ersten Stern und Schneeflocken, sitzen mit unseren Liebsten am Tisch. Festliche Dekorationen runden diese Zeit ab: Bäume, Gestecke, Kränze und Engel. Melde dich – ich gestalte auf Wunsch eine Dekoration, die die besondere Weihnachtsstimmung betont. Ich helfe auch beim Schmücken von Tannenbäumen.",
+                },
+                {
+                    numeral: "II",
                     heading: "Hochzeitsdekorationen",
                     body: "Die Trauung ist ein großes Ereignis, und Blumen sind ihr unverzichtbares Attribut. Ich lade ein, ein einzigartiges Blumenarrangement zu gestalten, das nur für euch vorbereitet ist – nicht nur farblich, sondern auch abgestimmt auf Charakter, Temperament und Stil des Paares. Für sie ein individuell komponierter Brautstrauß, für ihn eine Boutonniere. Alles bleibt stimmig mit dem Dekor der Halle, Kirche, des Autos und der Torte. Für Brautjungfern und Blumenmädchen: Kränze, kleine Sträuße und Haarnadeln.",
                     cards: [
@@ -418,13 +408,13 @@ export const siteCopy: Record<SiteLang, {
                     ],
                 },
                 {
-                    numeral: "II",
+                    numeral: "III",
                     heading: "Ringe, Kränze, Herzen",
                     body: "Kränze für jeden Anlass – Geburtstage, als Türschmuck oder Tischdekoration mit Kerze. Wir fertigen sie aus frischen, getrockneten oder künstlichen Blumen. Sie sind ein wunderschöner Akzent in Schaufenstern und können beim letzten Abschied auf den Sarg gelegt werden.",
                     priceNote: "Preis ab 250 PLN, je nach Größe und verwendeten Blumen.",
                 },
                 {
-                    numeral: "III",
+                    numeral: "IV",
                     heading: "Trauergebinde",
                     body: "Wir alle stehen irgendwann vor dem Sarg eines geliebten Menschen. Zu Ehren und im Andenken bieten wir eine breite Kollektion oder maßgeschneiderte Kompositionen, die das Leben der Verstorbenen widerspiegeln.",
                     priceNote:
@@ -432,7 +422,7 @@ export const siteCopy: Record<SiteLang, {
                     cards: ["Trauersträuße", "Blumenherzen", "Arrangements für den Sarg"],
                 },
                 {
-                    numeral: "IV",
+                    numeral: "V",
                     heading: "Weitere Dekorationen",
                     body: "Entdecke unser weiteres Angebot: Blumenboxen für jeden Anlass, in jeder Größe und Farbwelt – für Taufen, Geburtstage, Namenstage oder Glückwünsche. Sträuße aus frischen und getrockneten Blumen. Arrangements in Vasen und dekorativen Gefäßen. Das können kleine Sträuße oder große Bühnen- und Kirchenbouquets sein, Event- und Showroom-Dekor, Setups für Konferenzen. Es gibt auch Geschenkkörbe.",
                     list: [
@@ -446,10 +436,6 @@ export const siteCopy: Record<SiteLang, {
                     ],
                 },
             ],
-            christmas: {
-                heading: "Weihnachtszeit",
-                body: "Weihnachten steht vor der Tür. Bald schauen wir nach dem ersten Stern und Schneeflocken, sitzen mit unseren Liebsten am Tisch. Festliche Dekorationen runden diese Zeit ab: Bäume, Gestecke, Kränze und Engel. Melde dich – ich gestalte auf Wunsch eine Dekoration, die die besondere Weihnachtsstimmung betont. Ich helfe auch beim Schmücken von Tannenbäumen.",
-            },
         },
         opinion: {
             heading: "Was sagen meine Kunden?",
