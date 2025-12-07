@@ -1,0 +1,421 @@
+---
+import talerzZloty from "../assets/cennik/talerz-swiateczny-zloty.jpg";
+import talerzOzdobny from "../assets/cennik/talerz-ozdobn-maly.jpg";
+import aranzacjaKwiaty from "../assets/cennik/aranzacja-swiateczna-zrobiona-ze-sztucznych-kwiatow.jpg";
+import { facebookLink, pricingCopy, type PricingLang } from "../i18n/pricing";
+import { normalizeLang } from "../i18n/lang";
+
+interface Props {
+    lang?: PricingLang;
+}
+
+const { lang: langProp } = Astro.props as Props;
+const lang = normalizeLang(langProp);
+const copy = pricingCopy[lang];
+const images = [talerzZloty, talerzOzdobny, aranzacjaKwiaty];
+const items = copy.items.map((item, index) => ({
+    ...item,
+    image: images[index],
+    gallery: [images[index]?.src].filter(Boolean),
+}));
+---
+
+<section id="cennik" class="pricing">
+    <div class="pricing-head">
+        <h1>{copy.heading}</h1>
+        <p class="intro">{copy.intro}</p>
+    </div>
+    <div class="container">
+        <div class="pricing-grid">
+            {
+                items.map((item, index) => {
+                    const dialogId = `pricingDialog${index}`;
+                    return (
+                        <article class="pricing-card">
+                            <div class="pricing-img-wrapper">
+                                <img src={item.image.src} alt={item.alt} loading="lazy" decoding="async" />
+                                <button
+                                    class="btn-modal"
+                                    type="button"
+                                    aria-label={`${copy.dialogAria} ${item.title}`}
+                                    data-dialog={dialogId}
+                                >
+                                    {copy.dialogAria}
+                                </button>
+                            </div>
+                            <div class="pricing-copy">
+                                <h3>{item.title}</h3>
+                                <p class="lead">{item.lead}</p>
+                                <ul>
+                                    {item.details.map((line, lineIndex) => (
+                                        <li>{line}</li>
+                                    ))}
+                                </ul>
+                                <a class="btn btn-primary" href={facebookLink} target="_blank" rel="noreferrer">
+                                    {copy.buyNow}
+                                </a>
+                            </div>
+
+                            <dialog id={dialogId} class="pricing-dialog">
+                                <article class="pricing-gallery">
+                                    <div class="swiper swiper-horizontal">
+                                        <div class="swiper-wrapper">
+                                            {item.gallery.map((imgSrc) => (
+                                                <div class="swiper-slide">
+                                                    <img src={imgSrc} alt={item.alt} />
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div class="swiper-button-prev" />
+                                        <div class="swiper-button-next" />
+                                    </div>
+                                </article>
+                                <form method="dialog">
+                                    <button aria-label={copy.closeLabel} class="close-button" type="submit">
+                                        X
+                                    </button>
+                                </form>
+                            </dialog>
+                        </article>
+                    );
+                })
+            }
+        </div>
+    </div>
+</section>
+
+<script is:inline type="module">
+    import Swiper from "https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.mjs";
+
+    addEventListener("DOMContentLoaded", () => {
+        const lockBody = () => document.body.classList.add("pricing-scroll-lock");
+        const unlockBody = () => document.body.classList.remove("pricing-scroll-lock");
+
+        document.querySelectorAll(".pricing-dialog .swiper").forEach((el) => {
+            const nextEl = el.parentElement?.querySelector(".swiper-button-next");
+            const prevEl = el.parentElement?.querySelector(".swiper-button-prev");
+
+            el._swiperInstance = new Swiper(el, {
+                loop: true,
+                navigation: {
+                    nextEl,
+                    prevEl,
+                },
+            });
+        });
+
+        document.querySelectorAll(".pricing-card .btn-modal").forEach((btn) => {
+            const dialogId = btn.dataset.dialog;
+            const dialog = dialogId ? document.getElementById(dialogId) : null;
+
+            if (!dialog) return;
+
+            btn.addEventListener("click", () => {
+                dialog.showModal();
+                lockBody();
+            });
+
+            dialog.addEventListener("close", unlockBody);
+            dialog.addEventListener("cancel", (event) => {
+                event.preventDefault();
+                dialog.close();
+            });
+            dialog.addEventListener("click", (event) => {
+                if (event.target === dialog) dialog.close();
+            });
+        });
+    });
+</script>
+
+<style>
+    .pricing {
+        background: #fff;
+        padding-top: 50px;
+    }
+
+    body.pricing-scroll-lock {
+        overflow: hidden;
+    }
+
+    .pricing-head {
+        width: 100%;
+        margin: 0 auto 52px auto;
+        text-align: center;
+        background-image: url(/footer.jpg);
+        background-size: cover;
+        background-position: center;
+        padding: 36px 28px;
+        border: 1px solid #ededed;
+        box-shadow: 0 26px 60px -34px rgba(0, 0, 0, 0.35);
+        color: #fff;
+    }
+
+    .pricing-head .eyebrow {
+        font-size: 12px;
+        letter-spacing: 1.6px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+
+    .pricing-head h1 {
+        margin-bottom: 16px;
+        font-size: 30px;
+    }
+
+    @media (min-width: 992px) {
+        .pricing-head h1 {
+            font-size: 40px;
+        }
+    }
+
+    .pricing-head .intro {
+        color: #fff;
+        line-height: 1.7;
+        margin: 0;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+
+    @media (min-width: 768px) {
+        .pricing-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .pricing-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+
+    .pricing-card {
+        display: flex;
+        flex-direction: column;
+        background: #f6f6f6;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #ededed;
+        box-shadow: 0 14px 36px -24px rgba(0, 0, 0, 0.35);
+        height: 100%;
+    }
+
+    .pricing-img-wrapper {
+        position: relative;
+    }
+
+    .pricing-img-wrapper img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        display: block;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 18px 48px -32px rgba(0, 0, 0, 0.4);
+    }
+
+    .pricing-copy {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        height: 100%;
+        flex: 1;
+    }
+
+    @media (min-width: 1024px) {
+        .pricing-copy {
+            padding: 36px;
+            gap: 16px;
+        }
+    }
+
+    .pricing-copy h3 {
+        margin: 0;
+        font-size: 24px;
+    }
+
+    @media (min-width: 1366px) {
+        .pricing-copy h3 {
+            font-size: 28px;
+        }
+    }
+
+    .pricing-copy .lead {
+        margin: 0;
+        color: #565656;
+        line-height: 1.6;
+    }
+
+    .pricing-copy ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 8px;
+    }
+
+    .pricing-copy ul li {
+        position: relative;
+        padding-left: 18px;
+        color: #2d2d2d;
+        line-height: 1.5;
+    }
+
+    .pricing-copy ul li:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        border: 2px solid #8cae6b;
+    }
+
+    .pricing-copy .btn {
+        margin-top: auto;
+        width: -moz-fit-content;
+        width: fit-content;
+    }
+
+    .pricing-card .btn-modal {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: rgba(0, 0, 0, 0.4);
+        color: #fff;
+        border-radius: 8px;
+        font-family: "DM Serif Text", serif;
+        font-size: 16px;
+        letter-spacing: 0.44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.3s ease-in-out all;
+    }
+
+    @media (min-width: 992px) {
+        .pricing-card .btn-modal {
+            opacity: 0;
+        }
+
+        .pricing-img-wrapper:hover .btn-modal,
+        .pricing-card .btn-modal:focus-visible {
+            opacity: 1;
+        }
+    }
+
+    .close-button {
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        background: var(--primary);
+        color: #fff;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        font-weight: 700;
+        transition: 0.3s ease-in-out all;
+    }
+
+    @media screen and (min-width: 992px) {
+        .close-button {
+            position: fixed;
+            right: 48px;
+            top: 48px;
+            width: 48px;
+            height: 48px;
+            font-size: 20px;
+        }
+    }
+
+    .close-button:hover {
+        background: var(--primary-dark);
+    }
+
+    .pricing-dialog {
+        border: none;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        background: transparent;
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+    }
+
+    .pricing-dialog:not([open]) {
+        display: none;
+    }
+
+    .pricing-dialog::backdrop {
+        background: #000000cc;
+    }
+
+    .pricing-dialog img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 8px;
+        display: block;
+        background: #fff;
+    }
+
+    .pricing-dialog .close-button {
+        z-index: 2;
+    }
+
+    .pricing-gallery {
+        width: 100%;
+        max-width: min(900px, 90vw);
+        max-height: 90vh;
+        padding: 10px;
+        display: grid;
+        place-items: center;
+    }
+
+    .pricing-gallery .swiper {
+        width: 100%;
+        height: 100%;
+        max-height: 90vh;
+    }
+
+    .pricing-gallery .swiper-slide {
+        display: grid;
+        place-items: center;
+        height: 100%;
+    }
+
+    .pricing-gallery img {
+        width: 100%;
+        height: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 8px;
+        display: block;
+        background: transparent;
+    }
+</style>

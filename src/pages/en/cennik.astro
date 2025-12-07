@@ -1,0 +1,38 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Nav from "../../components/Nav.astro";
+import Cennik from "../../components/Cennik.astro";
+import Footer from "../../components/Footer.astro";
+import { pricingCopy, type PricingLang } from "../../i18n/pricing";
+
+const lang: PricingLang = "en";
+const copy = pricingCopy[lang];
+---
+
+<Layout lang={lang} title={copy.meta.title} description={copy.meta.description}>
+    <Header lang={lang} />
+    <Nav lang={lang} />
+    <main>
+        <Cennik lang={lang} />
+        <section id="dekoracje" class="cta" data-astro-cid-i344ymn4="">
+            <div class="container" data-astro-cid-i344ymn4="">
+                <div class="cta-wrapper" data-astro-cid-i344ymn4="">
+                    <h2 data-astro-cid-i344ymn4="">{copy.cta.heading}</h2>
+                    <h3 data-astro-cid-i344ymn4="">{copy.cta.subheading}</h3>
+                    <div class="btn-wrapper" data-astro-cid-i344ymn4="">
+                        <a
+                            href="https://www.facebook.com/marketplace/profile/100058801496320/?ref=permalink"
+                            target="_blank"
+                            class="btn btn-primary"
+                            data-astro-cid-i344ymn4=""
+                        >
+                            {copy.cta.button}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer lang={lang} />
+</Layout>

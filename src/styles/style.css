@@ -80,12 +80,6 @@ a[data-astro-cid-3ef6ksr2] {
     text-transform: uppercase;
 }
 
-@media screen and (min-width: 1200px) {
-    a[data-astro-cid-3ef6ksr2] {
-        align-items: center;
-    }
-}
-
 a[data-astro-cid-3ef6ksr2] span[data-astro-cid-3ef6ksr2] {
     color: #8cae6bcc;
     font-size: 10px;
@@ -202,7 +196,7 @@ nav[data-astro-cid-3ef6ksr2] {
 
 .navigation[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2] {
     width: -moz-fit-content;
-    width: fit-content;
+    width: auto;
     transition: 0.3s ease-in-out all;
 }
 

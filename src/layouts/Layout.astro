@@ -5,17 +5,19 @@ interface Props {
     title?: string;
     description?: string;
     canonical?: string;
+    lang?: string;
 }
 
 const {
     title = "Pani Kwiat – odkryj piękno i energię drzemiące w kwiatach",
     description = "Kwiaty przeobrażają w pachnący ogród każde miejsce swoją obecnością, kolorem, zapachem i formą wyczarowaną ręką artysty.",
     canonical = new URL(Astro.url).origin + Astro.url.pathname,
+    lang = "pl",
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

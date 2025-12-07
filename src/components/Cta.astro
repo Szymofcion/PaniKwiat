@@ -1,8 +1,15 @@
+---
+import { normalizeLang, siteCopy, type SiteLang } from "../i18n/site";
+
+const lang = normalizeLang(Astro.props.lang as SiteLang);
+const copy = siteCopy[lang].cta;
+---
+
 <section id="dekoracje" class="cta" data-astro-cid-i344ymn4="">
     <div class="container" data-astro-cid-i344ymn4="">
         <div class="cta-wrapper" data-astro-cid-i344ymn4="">
-            <h2 data-astro-cid-i344ymn4="">Szukasz dekoracji <span data-astro-cid-i344ymn4="">na już?</span></h2>
-            <h3 data-astro-cid-i344ymn4="">zobacz kompozycje, które możesz kupić jeszcze dziś!</h3>
+            <h2 data-astro-cid-i344ymn4="">{copy.heading}</h2>
+            <h3 data-astro-cid-i344ymn4="">{copy.subheading}</h3>
             <div class="btn-wrapper" data-astro-cid-i344ymn4="">
                 <a
                     href="https://www.facebook.com/marketplace/profile/100058801496320/?ref=permalink"
@@ -10,7 +17,7 @@
                     class="btn btn-primary"
                     data-astro-cid-i344ymn4=""
                 >
-                    przeglądaj gotowe produkty
+                    {copy.button}
                 </a>
             </div>
         </div>
