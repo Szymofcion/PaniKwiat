@@ -177,7 +177,7 @@ const languages = [
                     {
                         languages.map((l) => (
                             <a class={`lang-pill ${l.code === lang ? "active" : ""}`} href={l.href}>
-                                {l.label}
+                                <span>{l.label}</span>
                             </a>
                         ))
                     }
@@ -352,8 +352,9 @@ const languages = [
     }
 
     .lang-pill:hover {
-        border-color: #2d2d2d33;
-        background: #e6e6e6;
+            background: #8cae6b;
+            color: #fff;
+            border-color: #8cae6b;
     }
 
     .lang-pill.active {
@@ -361,5 +362,8 @@ const languages = [
         color: #fff;
         border-color: #8cae6b;
         box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.35);
+    }
+    .lang-pill span {
+        margin-top: 1px;
     }
 </style>
