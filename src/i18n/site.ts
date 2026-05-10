@@ -64,6 +64,7 @@ export const siteCopy: Record<
                 { href: "/#skomponuj", label: "Skomponuj dekorację", sub: "Daj się ponieść fantazji" },
                 { href: "/#dekoracje", label: "Gotowe od ręki", sub: "gotowe produkty" },
                 { href: "/cennik", label: "Cennik", sub: "sprawdź ceny" },
+                { href: "/blog", label: "Blog", sub: "porady i inspiracje" },
                 { href: "/#kimjestem", label: "Kim jestem?", sub: "poznajmy się" },
                 { href: "/#opinie", label: "Poznaj opinie", sub: "Mówią o mnie..." },
                 { href: "/#footer", label: "Kontakt", sub: "porozmawiajmy" },

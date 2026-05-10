@@ -12,6 +12,7 @@ const mapHref = (href: string) => {
     if (href.startsWith("#")) return href;
     if (href.startsWith("/#")) return `${prefix}${href}`;
     if (href === "/cennik") return `${prefix}/cennik`;
+    if (href === "/blog") return "/blog";
     return `${prefix}${href}`;
 };
 
@@ -21,7 +22,11 @@ const links = navCopy.links.map((link) => {
     const href = link.href.includes("#dekoracje") && onPricing ? "#dekoracje" : link.href;
     const finalHref = mapHref(href);
     const active =
-        link.href === "/cennik" ? activePath.startsWith("/cennik") : activePath === "/" && link.href !== "/cennik";
+        link.href === "/cennik"
+            ? activePath.startsWith("/cennik")
+            : link.href === "/blog"
+              ? activePath.startsWith("/blog")
+              : activePath === "/" && link.href !== "/cennik";
     return { ...link, href: finalHref, active };
 });
 

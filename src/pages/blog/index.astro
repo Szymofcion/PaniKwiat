@@ -1,0 +1,280 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import { blogPosts } from "../../data/blog";
+
+const lang = "pl";
+---
+
+<Layout
+    lang={lang}
+    title="Blog Pani Kwiat – porady i inspiracje florystyczne"
+    description="Inspiracje florystyczne, praktyczne wskazówki i pomysły na dekoracje na wyjątkowe okazje."
+>
+    <Header lang={lang} />
+    <Nav lang={lang} />
+
+    <section class="blog-hero">
+        <div class="container">
+            <div class="blog-hero__content">
+                <span>porady i inspiracje</span>
+                <h1>Blog Pani Kwiat</h1>
+                <p>Inspiracje florystyczne, praktyczne wskazówki i pomysły na dekoracje na wyjątkowe okazje.</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="blog-page">
+        <div class="container">
+            <div class="blog-archive">
+                <div class="blog-archive__posts">
+                    {
+                        blogPosts.map((post) => (
+                            <article class="blog-card">
+                                <a class="blog-card__media" href={`/blog/${post.slug}/`} aria-label={post.title}>
+                                    <img src={post.cover} alt="" loading="lazy" width="500" height="667" />
+                                </a>
+                                <div class="blog-card__body">
+                                    <p class="blog-card__meta">
+                                        <time datetime={post.date}>Opublikowano · {post.displayDate}</time>
+                                    </p>
+                                    <h2 class="blog-card__title">
+                                        <a href={`/blog/${post.slug}/`}>{post.title}</a>
+                                    </h2>
+                                    <p class="blog-card__excerpt">{post.excerpt}</p>
+                                    <a class="blog-card__link" href={`/blog/${post.slug}/`}>Czytaj wpis</a>
+                                </div>
+                            </article>
+                        ))
+                    }
+                </div>
+
+                <aside class="blog-sidebar">
+                    <section class="blog-widget">
+                        <h2>Najnowsze wpisy</h2>
+                        <div class="blog-widget__posts">
+                            {
+                                blogPosts.map((post) => (
+                                    <article class="blog-mini-post">
+                                        <a class="blog-mini-post__media" href={`/blog/${post.slug}/`} aria-label={post.title}>
+                                            <img src={post.cover} alt="" loading="lazy" width="92" height="92" />
+                                        </a>
+                                        <div class="blog-mini-post__body">
+                                            <h3><a href={`/blog/${post.slug}/`}>{post.title}</a></h3>
+                                            <p>{post.displayDate}</p>
+                                        </div>
+                                    </article>
+                                ))
+                            }
+                        </div>
+                    </section>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <Footer lang={lang} />
+</Layout>
+
+<style>
+    .blog-hero {
+        background-image: linear-gradient(90deg, rgba(21, 21, 21, 0.72), rgba(21, 21, 21, 0.28)), url("/hero.jpg");
+        background-position: center;
+        background-size: cover;
+        color: #fff;
+        padding-top: 132px;
+        padding-bottom: 56px;
+    }
+
+    .blog-hero__content {
+        max-width: 760px;
+    }
+
+    .blog-hero span,
+    .blog-card__meta,
+    .blog-mini-post__body p {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+    }
+
+    .blog-hero span {
+        color: rgba(255, 255, 255, 0.82);
+        display: inline-block;
+        margin-bottom: 14px;
+    }
+
+    .blog-hero h1 {
+        color: #fff;
+        margin-bottom: 18px;
+        text-align: left;
+    }
+
+    .blog-hero p {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 15px;
+        line-height: 1.9;
+        margin-bottom: 0;
+    }
+
+    .blog-page {
+        background: #f7f7f2;
+        padding-top: 40px;
+        padding-bottom: 56px;
+    }
+
+    .blog-archive {
+        display: grid;
+        gap: 28px;
+    }
+
+    .blog-card,
+    .blog-widget {
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(109, 142, 77, 0.12);
+        border-radius: 24px;
+        box-shadow: 0 24px 60px -42px rgba(21, 21, 21, 0.32);
+        overflow: hidden;
+    }
+
+    .blog-card {
+        display: grid;
+    }
+
+    .blog-card__media {
+        display: block;
+        max-height: 300px;
+        overflow: hidden;
+    }
+
+    .blog-card__media img,
+    .blog-mini-post__media img {
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.35s ease;
+        width: 100%;
+    }
+
+    .blog-card:hover .blog-card__media img,
+    .blog-mini-post:hover .blog-mini-post__media img {
+        transform: scale(1.04);
+    }
+
+    .blog-card__body,
+    .blog-widget {
+        padding: 24px;
+    }
+
+    .blog-card__meta,
+    .blog-mini-post__body p {
+        color: rgba(109, 142, 77, 0.92);
+        margin-bottom: 12px;
+    }
+
+    .blog-card__title,
+    .blog-widget h2,
+    .blog-mini-post__body h3 {
+        color: #151515;
+        text-align: left;
+        text-shadow: none;
+    }
+
+    .blog-card__title {
+        font-size: 26px;
+        margin-bottom: 14px;
+    }
+
+    .blog-card__excerpt {
+        color: #5d5d5d;
+        margin-bottom: 18px;
+    }
+
+    .blog-card__link {
+        color: var(--primary);
+        display: inline-flex;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+
+    .blog-sidebar,
+    .blog-widget__posts {
+        display: grid;
+        gap: 16px;
+        align-content: start;
+    }
+
+    .blog-widget h2 {
+        font-size: 25px;
+        margin-bottom: 22px;
+    }
+
+    .blog-mini-post {
+        align-items: center;
+        display: grid;
+        gap: 14px;
+        grid-template-columns: 92px 1fr;
+    }
+
+    .blog-mini-post__media {
+        border-radius: 16px;
+        display: block;
+        height: 92px;
+        overflow: hidden;
+    }
+
+    .blog-mini-post__body h3 {
+        font-size: 18px;
+        margin-bottom: 6px;
+    }
+
+    .blog-mini-post__body p {
+        margin-bottom: 0;
+    }
+
+    @media screen and (min-width: 768px) {
+        .blog-card {
+            grid-template-columns: minmax(240px, 290px) 1fr;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .blog-hero {
+            padding-top: 170px;
+            padding-bottom: 88px;
+        }
+
+        .blog-page {
+            padding-top: 56px;
+            padding-bottom: 88px;
+        }
+
+        .blog-archive {
+            grid-template-columns: minmax(0, 1.65fr) minmax(300px, 0.7fr);
+            gap: 32px;
+        }
+
+        .blog-card__body,
+        .blog-widget {
+            padding: 32px;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .blog-card__media {
+            height: 260px;
+        }
+
+        .blog-mini-post {
+            grid-template-columns: 78px 1fr;
+        }
+
+        .blog-mini-post__media {
+            height: 78px;
+        }
+    }
+</style>
