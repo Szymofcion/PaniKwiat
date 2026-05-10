@@ -1,0 +1,61 @@
+services:
+  db:
+    image: mariadb:11.4
+    container_name: pani-kwiat-db
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${WORDPRESS_DB_NAME}
+      MARIADB_USER: ${WORDPRESS_DB_USER}
+      MARIADB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${WORDPRESS_DB_ROOT_PASSWORD}
+    ports:
+      - "${DB_PORT:-3307}:3306"
+    volumes:
+      - ./data/db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  wordpress:
+    image: wordpress:6.6.2-php8.3-apache
+    container_name: pani-kwiat-wp
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WP_CLI_CACHE_DIR: /tmp/.wp-cli-cache
+      WORDPRESS_DEBUG: ${WORDPRESS_DEBUG:-0}
+    ports:
+      - "${WORDPRESS_PORT:-8080}:80"
+    volumes:
+      - ./site:/var/www/html
+      - ./wp-content/themes/pani-kwiat:/var/www/html/wp-content/themes/pani-kwiat
+
+  wpcli:
+    image: wordpress:cli-php8.3
+    container_name: pani-kwiat-wpcli
+    depends_on:
+      db:
+        condition: service_healthy
+      wordpress:
+        condition: service_started
+    user: "33:33"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+    volumes:
+      - ./site:/var/www/html
+      - ./wp-content/themes/pani-kwiat:/var/www/html/wp-content/themes/pani-kwiat
+      - ./scripts:/scripts
+      - ./packages:/packages
+    working_dir: /var/www/html
+    entrypoint: ["wp"]
