@@ -15,6 +15,8 @@ export const pricingCopy: Record<
             lead: string;
             details: string[];
             alt: string;
+            image: string;
+            gallery: string[];
         }[];
         cta: {
             heading: string;
@@ -28,29 +30,52 @@ export const pricingCopy: Record<
     }
 > = {
     pl: {
-        heading: "Gotowe dekoracje świąteczne, od razu do kupienia",
-        intro: "Wybierz talerze i aranżacje przygotowane w estetyce Pani Kwiat. Każdy produkt ma wymiary, cenę i szybki przycisk \"Kup teraz\" kierujący prosto na Facebook Marketplace.",
+        heading: "Gotowe dekoracje i kompozycje, od razu do zamówienia",
+        intro: "Wybierz gotowe aranżacje przygotowane w estetyce Pani Kwiat. Każdy produkt ma opis, zdjęcia i szybki przycisk \"Kup teraz\" kierujący prosto na Facebook Marketplace.",
         buyNow: "Kup teraz",
         closeLabel: "Zamknij podgląd",
         dialogAria: "Powiększ",
         items: [
             {
-                title: "Złoty talerz świąteczny",
-                lead: "Metaliczny talerz z zimowymi akcentami – gotowy, aby w kilka sekund odmienić stół.",
-                details: ["Wysokość 20 cm, średnica 30 cm.", "Cena 145,00 zł.", "Plus koszty wysyłki."],
-                alt: "Złoty talerz świąteczny z dekoracjami",
+                title: "Kwiaty na każdą okazję",
+                lead: "Ozdobne pudełko z kwiatami w kolorach, które sprawdzą się jako prezent na wiele okazji.",
+                details: [
+                    "Wysokość 40 cm, średnica pudełka 20 cm.",
+                    "Kwiaty ułożone są w piance florystycznej, co przedłuża ich świeżość.",
+                    "Idealne rozwiązanie dla podróżujących.",
+                ],
+                alt: "Ozdobne pudełko z kwiatami na każdą okazję",
+                image: "/cennik/1/Kwiaty na każdą okazję.jpg",
+                gallery: ["/cennik/1/Kwiaty na każdą okazję.jpg"],
             },
             {
-                title: "Talerz ozdobny",
-                lead: "Neutralna, elegancka baza z subtelną kompozycją, która wpasuje się w każde wnętrze.",
-                details: ["Wysokość 20 cm, średnica 30 cm.", "Cena 155,00 zł.", "Plus koszty wysyłki."],
-                alt: "Dekoracyjny talerz z kompozycją",
+                title: "Kwiaty na chrzest lub komunię świętą",
+                lead: "Delikatna, wiosenna aranżacja w przezroczystym szklanym wazonie, przygotowana jako wystrój stołów.",
+                details: [
+                    "Wysokość około 30 cm.",
+                    "Dostępne na terenie Wrocławia.",
+                    "Cena zawiera wazon.",
+                ],
+                alt: "Delikatna aranżacja kwiatowa na chrzest lub komunię",
+                image: "/cennik/2/Kwiaty na chrzest lub komunię świętą-1.jpg",
+                gallery: [
+                    "/cennik/2/Kwiaty na chrzest lub komunię świętą-1.jpg",
+                    "/cennik/2/Kwiaty na chrzest lub komunię świętą-2.jpg",
+                ],
             },
             {
-                title: "Aranżacja świąteczna w wiklinowym koszu",
-                lead: "Sztuczne kwiaty, bombki i światełka na wiklinowej podstawie – efektowna ozdoba na cały sezon.",
-                details: ["Wysokość 70 cm, średnica 50 cm.", "Cena 360,00 zł.", "Plus koszty wysyłki."],
-                alt: "Aranżacja świąteczna ze sztucznych kwiatów",
+                title: "Unikalny wianek, wieniec ozdobny",
+                lead: "Dekoracyjny wianek do wnętrza, na drzwi lub jako ozdoba stołu, przygotowany w autorskim stylu Pani Kwiat.",
+                details: ["Produkt gotowy do zamówienia.", "Cena dostępna po kontakcie.", "Możliwość dopasowania podobnej kompozycji do okazji."],
+                alt: "Unikalny wianek ozdobny",
+                image: "/cennik/3/674562666_1647858816405261_4962527916151947291_n.jpg",
+                gallery: [
+                    "/cennik/3/674562666_1647858816405261_4962527916151947291_n.jpg",
+                    "/cennik/3/675559602_3363871810454306_5708614978700269464_n.jpg",
+                    "/cennik/3/675783829_946514561322032_420060196992084675_n.jpg",
+                    "/cennik/3/676466614_1473031520990777_6843671038386788551_n.jpg",
+                    "/cennik/3/677663053_1450437566101738_1403299244379218340_n.jpg",
+                ],
             },
         ],
         cta: {
@@ -59,35 +84,54 @@ export const pricingCopy: Record<
             button: "przeglądaj gotowe produkty",
         },
         meta: {
-            title: "Cennik dekoracji świątecznych | Gotowe talerze i aranżacje Pani Kwiat",
+            title: "Cennik dekoracji i kompozycji kwiatowych | Pani Kwiat",
             description:
-                "Złote talerze, ozdobne aranżacje i kompozycje świąteczne od Pani Kwiat. Sprawdź ceny, wymiary, zdjęcia i zamów od razu przez Facebook Marketplace.",
+                "Gotowe kompozycje i dekoracje kwiatowe od Pani Kwiat. Sprawdź opisy, zdjęcia i zamów od razu przez Facebook Marketplace.",
         },
     },
     en: {
-        heading: "Ready-made holiday decorations, available right away",
-        intro: "Choose plates and arrangements in the Pani Kwiat style. Each product lists its size, price, and a quick \"Buy now\" button that goes straight to Facebook Marketplace.",
+        heading: "Ready-made decorations and floral arrangements",
+        intro: "Choose ready-made arrangements in the Pani Kwiat style. Each product includes a description, photos, and a quick \"Buy now\" button that goes straight to Facebook Marketplace.",
         buyNow: "Buy now",
         closeLabel: "Close preview",
         dialogAria: "Zoom",
         items: [
             {
-                title: "Golden holiday plate",
-                lead: "A metallic plate with winter accents—ready to refresh your table in seconds.",
-                details: ["Height 20 cm, diameter 30 cm.", "Price 145.00 zł.", "Plus shipping costs."],
-                alt: "Golden Christmas plate with decorations",
+                title: "Flowers for every occasion",
+                lead: "A decorative flower box in colours that work beautifully as a gift for many occasions.",
+                details: [
+                    "Height 40 cm, box diameter 20 cm.",
+                    "Flowers are arranged in floral foam to help them stay fresh longer.",
+                    "A practical option for people who travel.",
+                ],
+                alt: "Decorative flower box for any occasion",
+                image: "/cennik/1/Kwiaty na każdą okazję.jpg",
+                gallery: ["/cennik/1/Kwiaty na każdą okazję.jpg"],
             },
             {
-                title: "Decorative plate",
-                lead: "A neutral, elegant base with a subtle arrangement that fits any interior.",
-                details: ["Height 20 cm, diameter 30 cm.", "Price 155.00 zł.", "Plus shipping costs."],
-                alt: "Decorative plate with a floral composition",
+                title: "Flowers for baptism or First Communion",
+                lead: "A delicate spring arrangement in a clear glass vase, prepared as table decor for a special celebration.",
+                details: ["Approx. height 30 cm.", "Available in Wroclaw.", "The price includes the vase."],
+                alt: "Delicate flower arrangement for baptism or First Communion",
+                image: "/cennik/2/Kwiaty na chrzest lub komunię świętą-1.jpg",
+                gallery: [
+                    "/cennik/2/Kwiaty na chrzest lub komunię świętą-1.jpg",
+                    "/cennik/2/Kwiaty na chrzest lub komunię świętą-2.jpg",
+                ],
             },
             {
-                title: "Christmas arrangement in a wicker basket",
-                lead: "Artificial flowers, baubles, and lights on a wicker base—an eye-catching piece for the whole season.",
-                details: ["Height 70 cm, diameter 50 cm.", "Price 360.00 zł.", "Plus shipping costs."],
-                alt: "Christmas arrangement made of artificial flowers",
+                title: "Unique decorative wreath",
+                lead: "A decorative wreath for interiors, doors, or table styling, prepared in the original Pani Kwiat style.",
+                details: ["Ready to order.", "Price available on request.", "A similar composition can be adjusted to the occasion."],
+                alt: "Unique decorative wreath",
+                image: "/cennik/3/674562666_1647858816405261_4962527916151947291_n.jpg",
+                gallery: [
+                    "/cennik/3/674562666_1647858816405261_4962527916151947291_n.jpg",
+                    "/cennik/3/675559602_3363871810454306_5708614978700269464_n.jpg",
+                    "/cennik/3/675783829_946514561322032_420060196992084675_n.jpg",
+                    "/cennik/3/676466614_1473031520990777_6843671038386788551_n.jpg",
+                    "/cennik/3/677663053_1450437566101738_1403299244379218340_n.jpg",
+                ],
             },
         ],
         cta: {
@@ -96,35 +140,54 @@ export const pricingCopy: Record<
             button: "browse ready products",
         },
         meta: {
-            title: "Holiday decoration prices | Ready plates and arrangements by Pani Kwiat",
+            title: "Floral decoration prices | Pani Kwiat",
             description:
-                "Golden plates, decorative arrangements, and Christmas compositions from Pani Kwiat. See prices, sizes, photos, and order directly via Facebook Marketplace.",
+                "Ready-made floral arrangements and decorations from Pani Kwiat. See descriptions, photos, and order directly via Facebook Marketplace.",
         },
     },
     de: {
-        heading: "Fertige Weihnachtsdekorationen, sofort verfügbar",
-        intro: "Wähle Teller und Arrangements im Stil von Pani Kwiat. Jedes Produkt enthält Maße, Preis und einen schnellen \"Jetzt kaufen\"-Button direkt zum Facebook Marketplace.",
+        heading: "Fertige Dekorationen und Blumenarrangements",
+        intro: "Wähle fertige Arrangements im Stil von Pani Kwiat. Jedes Produkt enthält Beschreibung, Fotos und einen schnellen \"Jetzt kaufen\"-Button direkt zum Facebook Marketplace.",
         buyNow: "Jetzt kaufen",
         closeLabel: "Vorschau schließen",
         dialogAria: "Vergrößern",
         items: [
             {
-                title: "Goldener Weihnachtsteller",
-                lead: "Metallischer Teller mit winterlichen Akzenten – verwandelt den Tisch in wenigen Sekunden.",
-                details: ["Höhe 20 cm, Durchmesser 30 cm.", "Preis 145,00 zł.", "Zzgl. Versandkosten."],
-                alt: "Goldener Weihnachtsteller mit Dekoration",
+                title: "Blumen fuer jeden Anlass",
+                lead: "Eine dekorative Blumenbox in Farben, die sich als Geschenk fuer viele Anlaesse eignet.",
+                details: [
+                    "Hoehe 40 cm, Durchmesser der Box 20 cm.",
+                    "Die Blumen sind in Floristikschaum arrangiert, damit sie laenger frisch bleiben.",
+                    "Eine praktische Loesung fuer Reisende.",
+                ],
+                alt: "Dekorative Blumenbox fuer jeden Anlass",
+                image: "/cennik/1/Kwiaty na każdą okazję.jpg",
+                gallery: ["/cennik/1/Kwiaty na każdą okazję.jpg"],
             },
             {
-                title: "Dekorativer Teller",
-                lead: "Neutrale, elegante Basis mit dezenter Komposition, die in jedes Interieur passt.",
-                details: ["Höhe 20 cm, Durchmesser 30 cm.", "Preis 155,00 zł.", "Zzgl. Versandkosten."],
-                alt: "Dekorativer Teller mit Blumenkomposition",
+                title: "Blumen fuer Taufe oder Erstkommunion",
+                lead: "Ein zartes Fruehlingsarrangement in einer klaren Glasvase, vorbereitet als Tischdekoration.",
+                details: ["Hoehe ca. 30 cm.", "Verfuegbar in Wroclaw.", "Der Preis enthaelt die Vase."],
+                alt: "Zartes Blumenarrangement fuer Taufe oder Erstkommunion",
+                image: "/cennik/2/Kwiaty na chrzest lub komunię świętą-1.jpg",
+                gallery: [
+                    "/cennik/2/Kwiaty na chrzest lub komunię świętą-1.jpg",
+                    "/cennik/2/Kwiaty na chrzest lub komunię świętą-2.jpg",
+                ],
             },
             {
-                title: "Weihnachtsarrangement im Weidenkorb",
-                lead: "Kunstblumen, Kugeln und Lichter auf einer Weidenbasis – eine eindrucksvolle Deko für die ganze Saison.",
-                details: ["Höhe 70 cm, Durchmesser 50 cm.", "Preis 360,00 zł.", "Zzgl. Versandkosten."],
-                alt: "Weihnachtsarrangement aus Kunstblumen",
+                title: "Einzigartiger dekorativer Kranz",
+                lead: "Ein dekorativer Kranz fuer Innenraeume, Tueren oder als Tischdekoration im Stil von Pani Kwiat.",
+                details: ["Fertig zur Bestellung.", "Preis auf Anfrage.", "Eine aehnliche Komposition kann an den Anlass angepasst werden."],
+                alt: "Einzigartiger dekorativer Kranz",
+                image: "/cennik/3/674562666_1647858816405261_4962527916151947291_n.jpg",
+                gallery: [
+                    "/cennik/3/674562666_1647858816405261_4962527916151947291_n.jpg",
+                    "/cennik/3/675559602_3363871810454306_5708614978700269464_n.jpg",
+                    "/cennik/3/675783829_946514561322032_420060196992084675_n.jpg",
+                    "/cennik/3/676466614_1473031520990777_6843671038386788551_n.jpg",
+                    "/cennik/3/677663053_1450437566101738_1403299244379218340_n.jpg",
+                ],
             },
         ],
         cta: {

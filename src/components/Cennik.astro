@@ -1,7 +1,4 @@
 ---
-import talerzZloty from "../assets/cennik/talerz-swiateczny-zloty.jpg";
-import talerzOzdobny from "../assets/cennik/talerz-ozdobn-maly.jpg";
-import aranzacjaKwiaty from "../assets/cennik/aranzacja-swiateczna-zrobiona-ze-sztucznych-kwiatow.jpg";
 import { facebookLink, pricingCopy, type PricingLang } from "../i18n/pricing";
 import { normalizeLang } from "../i18n/lang";
 
@@ -12,12 +9,7 @@ interface Props {
 const { lang: langProp } = Astro.props as Props;
 const lang = normalizeLang(langProp);
 const copy = pricingCopy[lang];
-const images = [talerzZloty, talerzOzdobny, aranzacjaKwiaty];
-const items = copy.items.map((item, index) => ({
-    ...item,
-    image: images[index],
-    gallery: [images[index]?.src].filter(Boolean),
-}));
+const items = copy.items;
 ---
 
 <section id="cennik" class="pricing">
@@ -25,7 +17,7 @@ const items = copy.items.map((item, index) => ({
         <h1>{copy.heading}</h1>
         <p class="intro">{copy.intro}</p>
     </div>
-    <!-- <div class="container">
+    <div class="container">
         <div class="pricing-grid">
             {
                 items.map((item, index) => {
@@ -33,7 +25,7 @@ const items = copy.items.map((item, index) => ({
                     return (
                         <article class="pricing-card">
                             <div class="pricing-img-wrapper">
-                                <img src={item.image.src} alt={item.alt} loading="lazy" decoding="async" />
+                                <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
                                 <button
                                     class="btn-modal"
                                     type="button"
@@ -81,7 +73,7 @@ const items = copy.items.map((item, index) => ({
                 })
             }
         </div>
-    </div> -->
+    </div>
 </section>
 
 <script is:inline type="module">
